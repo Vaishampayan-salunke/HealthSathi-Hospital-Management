@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Departments - CityCare Hospital</title>
+  <link rel="stylesheet" href="css/style.css">
+</head><body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h2>🏥 HealthSathi Hospital</h2>
+    <nav>
+      <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
+      <a href="appointments.html" data-i18n="appointments">Appointments</a>
+      <a href="pharmacy.html" data-i18n="pharmacy">Pharmacy</a>
+      <a href="lab.html" data-i18n="lab">Lab</a>
+      <a href="billing.html" data-i18n="billing">Billing</a>
+      <a href="chatbot.html" data-i18n="chatbot">AI Chatbot</a>
+      <a href="nearbyhospital.html" data-i18n="nearbyhospital">Nearby Hospitals</a>
+      <a href="emergency.html" class="emergency-btn" data-i18n="emergency">🚨 Emergency</a>
+      <a href="index.html" data-i18n="logout">Logout</a>
+    </nav>
+  </header>
+
+  <main class="departments">
+    <h1 data-i18n="our_departments">Our Departments</h1>
+    <p class="subtitle" data-i18n="meet_doctors">Meet our expert doctors</p>
+
+    <!-- ================= CARDIOLOGY ================= -->
+    <section id="cardiology" class="department-section">
+      <h2 data-i18n="cardiology">🫀 Cardiology</h2>
+      <div class="doctor-list">
+        <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Anil Kumar"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology5.jpg" alt="Dr. Anil Kumar">
+          <h3>Dr. Anil Kumar</h3>
+          <p>Senior Cardiologist</p>
+          <p>Experience: 15 years</p>
+          <p>Available: Mon–Fri</p>
+        </div>
+        <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Priya Sharma"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology2.jpeg" alt="Dr. Priya Sharma">
+          <h3>Dr. Priya Sharma</h3>
+          <p>Heart Specialist</p>
+          <p>Experience: 10 years</p>
+          <p>Available: Tue–Sat</p>
+        </div>
+         <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Rahul Mehta"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology1.jpeg" alt="Dr. Rahul Mehta">
+          <h3>Dr. Rahul Mehta</h3>
+          <p>Interventional Cardiologist</p>
+          <p>Experience: 12 years</p>
+          <p>Available: Mon–Thu</p>
+        </div>
+        <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Sneha Kapoor"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology6.jpg" alt="Dr. Sneha Kapoor">
+          <h3>Dr. Sneha Kapoor</h3>
+          <p>Cardiac Surgeon</p>
+          <p>Experience: 14 years</p>
+          <p>Available: Wed–Sat</p>
+        </div>
+        <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Vivek Nanda"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology3.jpg" alt="Dr. Vivek Nanda">
+          <h3>Dr. Vivek Nanda</h3>
+          <p>Heart Failure Specialist</p>
+          <p>Experience: 9 years</p>
+          <p>Available: Mon–Fri</p>
+        </div>
+        <div class="doctor-card" 
+     data-department="Cardiology" 
+     data-doctor="Dr. Kavita Rao"
+     onclick="bookDoctor(this)">
+          <img src="img/doctors/cardiology4.jpg" alt="Dr. Kavita Rao">
+          <h3>Dr. Kavita Rao</h3>
+          <p>Pediatric Cardiologist</p>
+          <p>Experience: 8 years</p>
+          <p>Available: Tue–Sat</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ORTHOPEDICS ================= -->
+    <section id="orthopedics" class="department-section">
+      <h2 data-i18n="orthopedics">🦴 Orthopedics</h2>
+      <div class="doctor-list">
+        <div class="doctor-card">
+          <img src="img/doctors/ortho1.jpg" alt="Dr. Rajesh Singh">
+          <h3>Dr. Rajesh Singh</h3>
+          <p>Orthopedic Surgeon</p>
+          <p>Experience: 12 years</p>
+          <p>Available: Mon–Thu</p>
+        </div>
+        <div class="doctor-card">
+          <img src="img/doctors/ortho2.jpg" alt="Dr. Neha Verma">
+          <h3>Dr. Neha Verma</h3>
+          <p>Joint Specialist</p>
+          <p>Experience: 8 years</p>
+          <p>Available: Wed–Sat</p>
+        </div>
+        <div class="doctor-card">
+          <img src="img/doctors/ortho3.jpg" alt="Dr. Arvind Sharma">
+          <h3>Dr. Arvind Sharma</h3>
+          <p>Spine Specialist</p>
+          <p>Experience: 14 years</p>
+          <p>Available: Mon–Fri</p>
+        </div>
+        <div class="doctor-card">
+          <img src="img/doctors/ortho4.jpg" alt="Dr. Sunita Joshi">
+          <h3>Dr. Sunita Joshi</h3>
+          <p>Pediatric Orthopedic</p>
+          <p>Experience: 10 years</p>
+          <p>Available: Tue–Sat</p>
+        </div>
+        <div class="doctor-card">
+          <img src="img/doctors/ortho5.jpg" alt="Dr. Deepak Yadav">
+          <h3>Dr. Deepak Yadav</h3>
+          <p>Trauma Specialist</p>
+          <p>Experience: 16 years</p>
+          <p>Available: Mon–Sat</p>
+        </div>
+        <div class="doctor-card">
+          <img src="img/doctors/ortho6.jpg" alt="Dr. Shalini Menon">
+          <h3>Dr. Shalini Menon</h3>
+          <p>Sports Injury Specialist</p>
+          <p>Experience: 9 years</p>
+          <p>Available: Wed–Sat</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DENTISTRY ================= -->
+    <section id="dentistry" class="department-section">
+      <h2 data-i18n="dentistry">🦷 Dentistry</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/dentistry1.jpg"><h3>Dr. Kavya Rao</h3><p>Dental Surgeon</p><p>Experience: 7 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry2.jpg"><h3>Dr. Manish Patel</h3><p>Orthodontist</p><p>Experience: 9 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry3.jpg"><h3>Dr. Snehal Deshpande</h3><p>Cosmetic Dentist</p><p>Experience: 12 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry4.jpg"><h3>Dr. Ananya Sethi</h3><p>Pediatric Dentist</p><p>Experience: 8 years</p><p>Available: Mon–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry5.jpg"><h3>Dr. Harish Kamat</h3><p>Implantologist</p><p>Experience: 15 years</p><p>Available: Tue–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry6.jpg"><h3>Dr. Meenal Jain</h3><p>Endodontist</p><p>Experience: 10 years</p><p>Available: Wed–Sat</p></div>
+      </div>
+    </section>
+
+    <!-- ================= NEUROLOGY ================= -->
+    <section id="neurology" class="department-section">
+      <h2 data-i18n="neurology">🧠 Neurology</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/dentistry2.jpg"><h3>Dr. Sanjay Rao</h3><p>Neurosurgeon</p><p>Experience: 18 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology2.jpeg"><h3>Dr. Pooja Krishnan</h3><p>Epilepsy Specialist</p><p>Experience: 12 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology3.jpg"><h3>Dr. Anirudh Sinha</h3><p>Stroke Specialist</p><p>Experience: 14 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry1.jpg"><h3>Dr. Ritu Malhotra</h3><p>Pediatric Neurologist</p><p>Experience: 10 years</p><p>Available: Wed–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho3.jpg"><h3>Dr. Nikhil Kapoor</h3><p>Movement Disorders Specialist</p><p>Experience: 9 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho2.jpg"><h3>Dr. Shreya Iyer</h3><p>Neuro Consultant</p><p>Experience: 8 years</p><p>Available: Tue–Sat</p></div>
+      </div>
+    </section>
+
+    <!-- ================= DERMATOLOGY ================= -->
+    <section id="dermatology" class="department-section">
+      <h2 data-i18n="dermatology">🌸 Dermatology</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/ortho4.jpg"><h3>Dr. Meera Reddy</h3><p>Skin Specialist</p><p>Experience: 11 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho5.jpg"><h3>Dr. Rohit Malhotra</h3><p>Cosmetic Dermatologist</p><p>Experience: 14 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho6.jpg"><h3>Dr. Sneha Jain</h3><p>Pediatric Dermatologist</p><p>Experience: 7 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry5.jpg"><h3>Dr. Arjun Desai</h3><p>Hair Specialist</p><p>Experience: 10 years</p><p>Available: Wed–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry4.jpg"><h3>Dr. Shweta Nair</h3><p>Acne Specialist</p><p>Experience: 9 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry6.jpg"><h3>Dr. Karan Mehta</h3><p>General Dermatologist</p><p>Experience: 13 years</p><p>Available: Tue–Sat</p></div>
+      </div>
+    </section>
+
+    <!-- ================= GYNECOLOGY ================= -->
+    <section id="gynecology" class="department-section">
+      <h2 data-i18n="gynecology">🤰 Gynecology</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/cardiology2.jpeg"><h3>Dr. Anjali Sharma</h3><p>Senior Gynecologist</p><p>Experience: 12 years</p><p>Available: Mon–Wed–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology6.jpg"><h3>Dr. Kavya Reddy</h3><p>Obstetrician</p><p>Experience: 8 years</p><p>Available: Tue–Thu–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology4.jpg"><h3>Dr. Nisha Patel</h3><p>Fertility Specialist</p><p>Experience: 10 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho2.jpg"><h3>Dr. Preeti Agarwal</h3><p>Reproductive Health</p><p>Experience: 9 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho4.jpg"><h3>Dr. Shilpa Rao</h3><p>Prenatal Care</p><p>Experience: 11 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho6.jpg"><h3>Dr. Radhika Iyer</h3><p>General Gynecologist</p><p>Experience: 7 years</p><p>Available: Wed–Sat</p></div>
+      </div>
+    </section>
+
+    <!-- ================= PEDIATRICS ================= -->
+    <section id="pediatrics" class="department-section">
+      <h2 data-i18n="pediatrics">👶 Pediatrics</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/dentistry1.jpg"><h3>Dr. Rohini Menon</h3><p>Child Specialist</p><p>Experience: 10 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology3.jpg"><h3>Dr. Aravind Rao</h3><p>Pediatric Surgeon</p><p>Experience: 14 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry3.jpg"><h3>Dr. Sneha Kulkarni</h3><p>Pediatrician</p><p>Experience: 9 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry2.jpg"><h3>Dr. Kiran Joshi</h3><p>Child Development</p><p>Experience: 8 years</p><p>Available: Wed–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho2.jpg"><h3>Dr. Vandana Singh</h3><p>Pediatric Consultant</p><p>Experience: 12 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho3.jpg"><h3>Dr. Mohit Sharma</h3><p>Neonatologist</p><p>Experience: 11 years</p><p>Available: Tue–Sat</p></div>
+      </div>
+    </section>
+
+    <!-- ================= GENERAL MEDICINE ================= -->
+    <section id="general" class="department-section">
+      <h2 data-i18n="general">🧬 General Medicine</h2>
+      <div class="doctor-list">
+        <div class="doctor-card"><img src="img/doctors/dentistry2.jpg"><h3>Dr. Sandeep Rao</h3><p>General Physician</p><p>Experience: 15 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology2.jpeg"><h3>Dr. Alka Bhatia</h3><p>Internal Medicine</p><p>Experience: 12 years</p><p>Available: Tue–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/cardiology3.jpg"><h3>Dr. Ravi Shankar</h3><p>Family Physician</p><p>Experience: 10 years</p><p>Available: Mon–Thu</p></div>
+        <div class="doctor-card"><img src="img/doctors/dentistry1.jpg"><h3>Dr. Priyanka Jain</h3><p>Consultant Physician</p><p>Experience: 9 years</p><p>Available: Wed–Sat</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho3.jpg"><h3>Dr. Mohan Iyer</h3><p>Senior Physician</p><p>Experience: 16 years</p><p>Available: Mon–Fri</p></div>
+        <div class="doctor-card"><img src="img/doctors/ortho2.jpg"><h3>Dr. Asha Rani</h3><p>Medical Consultant</p><p>Experience: 8 years</p><p>Available: Tue–Sat</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Hospital">
+      📞
+    </a>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .floating-phone-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    .floating-phone-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+    .floating-phone-icon a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+
+  <script src="js/language-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency - CityCare Hospital</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="emergency-page">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h2>🏥 HealthSathi </h2>
+    <nav>
+      <a href="appointments.html">Appointments</a>
+      <a href="departments.html">Departments</a>
+      <a href="pharmacy.html">Pharmacy</a>
+      <a href="lab.html">Lab</a>
+      <a href="billing.html">Billing</a>
+      <a href="chatbot.html">AI Chatbot</a>
+      <a href="nearbyhospital.html">Nearby Hospitals</a>
+      <a href="emergency.html" class="emergency-btn">🚨 Emergency</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Emergency Section -->
+  <main class="emergency-container">
+    <h1>🚨 Emergency Help</h1>
+    <p class="subtitle">In case of an emergency, use the contacts below</p>
+
+    <div class="emergency-card">
+      <h2>🚑 Ambulance Service</h2>
+      <p>Helpline Number: <strong>+91 108</strong></p>
+      <a href="tel:108" class="call-btn">📞 Call Ambulance</a>
+    </div>
+
+    <div class="emergency-card">
+      <h2>🏥 Hospital Emergency Desk</h2>
+      <p>Number: <strong>+91 98765 43210</strong></p>
+      <a href="tel:9876543210" class="call-btn">📞 Call Hospital</a>
+      <a href="mailto:emergency@citycare.com" class="email-btn">✉ Email Hospital</a>
+    </div>
+
+    <div class="emergency-card">
+      <h2>📍 Location</h2>
+      <p>CityCare Hospital, MG Road, Bangalore</p>
+      <iframe 
+        src="https://www.google.com/maps?q=City+Hospital+MG+Road+Bangalore&output=embed"
+        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+
+    <a href="dashboard.html" class="back-dashboard-btn">⬅ Back to Dashboard</a>
+  </main>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Hospital">
+      📞
+    </a>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .floating-phone-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    .floating-phone-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+    .floating-phone-icon a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+
+  <script src="js/language-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Tests - CityCare Hospital</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 240ms ease, transform 240ms ease;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="lab-page">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h2>🏥 HealthSathi</h2>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="departments.html">Departments</a>
+      <a href="pharmacy.html">Pharmacy</a>
+      <a href="lab.html" class="active">Lab</a>
+      <a href="billing.html">Billing</a>
+      <a href="chatbot.html">AI Chatbot</a>
+      <a href="nearbyhospital.html">Nearby Hospitals</a>
+      <a href="emergency.html" class="emergency-btn">🚨 Emergency</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="lab">
+    <h1 data-i18n="lab_title">🧪 Diagnostic Lab</h1>
+    <p class="subtitle" data-i18n="lab_subtitle">Book your lab tests online</p>
+
+    <!-- Search -->
+    <input type="text" id="labSearch" placeholder="🔍 Search lab tests..." class="search-bar" data-i18n="search_tests" >
+
+    <!-- Tests Grid -->
+    <div class="test-grid" id="testGrid"></div>
+
+    <!-- Cart -->
+    <section class="cart">
+      <h2 data-i18n="your_cart">🛒 Selected Tests</h2>
+      <ul id="labCartList"></ul>
+      <p><strong>Total: ₹<span id="labCartTotal">0</span></strong></p>
+      <button class="glow-btn" onclick="checkoutLab()">Checkout → Billing</button>
+    </section>
+  </main>
+
+  <script>
+    const tests = [
+      {test:"Blood Test", price:300, img:"img/lab/blood.jpg", desc:"Complete blood count for general health."},
+      {test:"X-Ray", price:500, img:"img/lab/xray.jpg", desc:"Imaging for bones and chest."},
+      {test:"MRI Scan", price:2500, img:"img/lab/mri.jpg", desc:"Detailed scan of soft tissues & brain."},
+      {test:"ECG", price:400, img:"img/lab/ecg.jpg", desc:"Measures electrical activity of heart."},
+      {test:"Urine Test", price:200, img:"img/lab/urine.jpg", desc:"Checks kidney & urinary tract health."},
+      {test:"Thyroid Test", price:450, img:"img/lab/thyroid.jpg", desc:"Checks thyroid hormone levels."},
+      {test:"Liver Function Test", price:550, img:"img/lab/liver.jpg", desc:"Evaluates liver enzymes & function."},
+      {test:"CT Scan", price:2000, img:"img/lab/ct.jpg", desc:"Cross-sectional body imaging."},
+      {test:"Vitamin B12 Test", price:350, img:"img/lab/vitb12.jpg", desc:"Detects B12 deficiency for energy & nerves."}
+    ];
+
+    const testGrid = document.getElementById("testGrid");
+    const labCartList = document.getElementById("labCartList");
+    const labCartTotal = document.getElementById("labCartTotal");
+
+    let labCart = [];
+
+    function renderTests(list) {
+      testGrid.innerHTML = "";
+      list.forEach(t => {
+        const card = document.createElement("div");
+        card.className = "test-card";
+        card.innerHTML = `
+          <img src="${t.img}" alt="${t.test}">
+          <h3>${t.test}</h3>
+          <p>${t.desc}</p>
+          <p class="price">₹${t.price}</p>
+          <button onclick="addLabCart('${t.test}', ${t.price}, '${t.img}', '${t.desc}')">Add</button>
+        `;
+        testGrid.appendChild(card);
+      });
+    }
+    renderTests(tests);
+
+    function addLabCart(test, price, img, desc) {
+  // Add to local memory cart
+  labCart.push({ test, price, img, desc });
+
+  // Update the UI cart on the lab page
+  updateLabCart();
+
+  // Save to localStorage immediately so billing page sees it
+  localStorage.setItem('labCart', JSON.stringify(labCart));
+
+  // Debugging log
+  console.log('Lab cart saved:', JSON.stringify(labCart));
+
+  // Show user feedback: toast notification
+  showToast(`${test} added to cart.`);
+}
+
+
+    // Small toast helper
+    function showToast(message, duration = 3000) {
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = message;
+      document.body.appendChild(t);
+      // force reflow then add class to trigger transition
+      void t.offsetWidth;
+      t.classList.add('show');
+      setTimeout(() => {
+        t.classList.remove('show');
+        // remove after transition
+        setTimeout(() => document.body.removeChild(t), 260);
+      }, duration);
+    }
+
+    function updateLabCart() {
+      labCartList.innerHTML = "";
+      let total = 0;
+      labCart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.test} - ₹${item.price}`;
+        labCartList.appendChild(li);
+        total += item.price;
+      });
+      labCartTotal.textContent = total;
+    }
+
+    function checkoutLab() {
+      localStorage.setItem("labCart", JSON.stringify(labCart));
+      alert("✅ Lab tests added to billing!");
+      window.location.href = "billing.html";
+    }
+
+    // Search functionality
+    document.getElementById("labSearch").addEventListener("keyup", function() {
+      const query = this.value.toLowerCase();
+      const filtered = tests.filter(t => t.test.toLowerCase().includes(query));
+      renderTests(filtered);
+    });
+  </script>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Hospital">
+      📞
+    </a>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .floating-phone-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    .floating-phone-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+    .floating-phone-icon a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+
+  <script src="js/language-config.js"></script>
+</body>
+</html>

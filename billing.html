@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing - CityCare Hospital</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ============================================
+   BILLING PAGE - SPECIFIC STYLES
+   ============================================ */
+
+/* Page Background */
+.billing-page {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* ========== HERO SECTION ========== */
+.billing-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.billing-hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite;
+}
+
+.billing-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  left: -10%;
+  width: 450px;
+  height: 450px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(15px, -15px) rotate(2deg); }
+  66% { transform: translate(-10px, 10px) rotate(-2deg); }
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  animation: fadeInLeft 0.8s ease;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.billing-hero h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: -1px;
+}
+
+.billing-hero p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 40px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge-icon {
+  font-size: 20px;
+}
+
+.badge-text {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.hero-decoration {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  z-index: 2;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 70px;
+  animation: floatIcon 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.2));
+}
+
+.icon-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.icon-2 {
+  top: 45%;
+  right: 5%;
+  animation-delay: 1s;
+}
+
+.icon-3 {
+  bottom: 15%;
+  left: 35%;
+  animation-delay: 2s;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(8deg); }
+}
+
+/* ========== MAIN CONTAINER ========== */
+.billing-main {
+  max-width: 1200px;
+  margin: -50px auto 40px;
+  padding: 0 50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========== PATIENT INFO CARD ========== */
+.patient-info-card {
+  background: white;
+  border-radius: 25px;
+  padding: 35px 40px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  border-left: 6px solid #667eea;
+  animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f3ff;
+}
+
+.info-header h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-badge {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(17, 153, 142, 0.3);
+}
+
+.info-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #636e72;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.status-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+  width: fit-content;
+}
+
+/* ========== BILL SECTIONS ========== */
+.bill-section {
+  background: white;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.8s ease;
+}
+
+.bill-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.pharmacy-section::before {
+  background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+}
+
+.lab-section::before {
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #f0f3ff;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.section-icon {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0;
+}
+
+.item-count {
+  background: #f8f9ff;
+  color: #667eea;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ========== BILL ITEMS ========== */
+.bill-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+  min-height: 50px;
+}
+
+.bill-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  border-radius: 18px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.bill-card:hover {
+  transform: translateX(8px);
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+/* IMAGE COMMENT: Each bill card img uses images from:
+   - Pharmacy items: img/medicines/[medicine-name].jpg
+   - Lab items: img/lab/[test-name].jpg
+   Example: img/medicines/paracetamol.jpg, img/lab/blood.jpg
+*/
+.bill-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 3px solid white;
+}
+
+.bill-card-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bill-card-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0 0 8px 0;
+}
+
+.bill-card-info p {
+  color: #636e72;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bill-card-price {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+/* Empty state for bill sections */
+.bill-items-container:empty::before {
+  content: 'No items added';
+  display: block;
+  text-align: center;
+  padding: 30px;
+  color: #b2bec3;
+  font-style: italic;
+}
+
+.section-subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  border-radius: 15px;
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.section-subtotal .amount {
+  font-size: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== BILL SUMMARY CARD ========== */
+.bill-summary-card {
+  background: white;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
+  border: 3px solid #667eea;
+  animation: slideUp 1s ease;
+}
+
+.bill-summary-card h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9ff;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.row-label {
+  color: #636e72;
+}
+
+.row-value {
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.discount-row .row-value {
+  color: #11998e;
+}
+
+.tax-row .row-value {
+  color: #f5576c;
+}
+
+.subtotal-row {
+  border-top: 2px solid #e8ecff;
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+.total-row {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px 20px;
+  font-size: 20px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  margin-top: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-row .row-label,
+.total-row .row-value {
+  color: white;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.grand-total {
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  /* color: white !important; */
+  display: inline !important;
+  letter-spacing: 0.5px;
+}
+
+.payment-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+  padding: 18px 20px;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.notice-icon {
+  font-size: 24px;
+}
+
+.payment-notice p {
+  margin: 0;
+  color: #636e72;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ========== GRAND TOTAL SECTION ========== */
+.grand-total-section {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  padding: 0 20px;
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grand-total-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+  text-align: center;
+  min-width: 350px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.grand-total-box h2 {
+  margin: 0 0 15px 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.grand-total-amount {
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== ACTION BUTTONS ========== */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.action-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-buttons button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.action-buttons button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.btn-download {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.btn-download:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(79, 172, 254, 0.5);
+}
+
+.btn-pay {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+}
+
+.btn-pay:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(17, 153, 142, 0.5);
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.btn-clear:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+}
+
+.btn-icon {
+  font-size: 20px;
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+  font-size: 100px;
+  margin-bottom: 25px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #636e72;
+  margin-bottom: 30px;
+}
+
+.empty-btn {
+  display: inline-block;
+  padding: 16px 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.empty-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== SUCCESS MODAL ========== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  text-align: center;
+  max-width: 450px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  font-size: 50px;
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0) rotate(-180deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.modal-icon.success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(17, 153, 142, 0.4);
+}
+
+.modal-content h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  color: #636e72;
+  margin-bottom: 30px;
+}
+
+.modal-btn {
+  padding: 16px 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.modal-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== TOAST NOTIFICATION ========== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+  font-weight: 700;
+  font-size: 15px;
+  z-index: 10001;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast::before {
+  content: '✓';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: white;
+  color: #11998e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* ========== BACK BUTTON ========== */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px auto;
+  padding: 16px 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.back-btn:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+  .info-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .billing-hero {
+    flex-direction: column;
+    padding: 60px 25px;
+    text-align: center;
+  }
+
+  .billing-hero h1 {
+    font-size: 40px;
+  }
+
+  .billing-hero p {
+    font-size: 16px;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-decoration {
+    margin-top: 40px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .billing-main {
+    padding: 0 25px;
+    margin: -30px auto 30px;
+  }
+
+  .patient-info-card,
+  .bill-section,
+  .bill-summary-card {
+    padding: 30px 25px;
+    border-radius: 20px;
+  }
+
+  .info-content {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .bill-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bill-card-content {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+
+  .bill-card img {
+    width: 100%;
+    height: 150px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .floating-icon {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .billing-hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-badges {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .badge-item {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bill-summary-card h3 {
+    font-size: 24px;
+  }
+
+  .modal-content {
+    padding: 35px 25px;
+    margin: 0 20px;
+  }
+}
+  </style>
+</head><body class="billing-page">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h2>🏥 HealthSathi</h2>
+    <nav>
+      <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
+      <a href="appointments.html" data-i18n="appointments">Appointments</a>
+      <a href="departments.html" data-i18n="departments">Departments</a>
+      <a href="pharmacy.html" data-i18n="pharmacy">Pharmacy</a>
+      <a href="lab.html" data-i18n="lab">Lab</a>
+      <a href="billing.html" class="active" data-i18n="billing">Billing</a>
+      <a href="chatbot.html" data-i18n="chatbot">AI Chatbot</a>
+      <a href="nearbyhospital.html" data-i18n="nearby_hospitals">Nearby Hospitals</a>
+      <a href="emergency.html" class="emergency-btn" data-i18n="emergency">🚨 Emergency</a>
+      <a href="index.html" data-i18n="logout">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="billing-hero">
+    <div class="hero-content">
+      <h1 data-i18n="billing_title">💳 Patient Billing</h1>
+      <p data-i18n="billing_subtitle">Review your charges and complete payment securely</p>
+      <div class="hero-badges">
+        <div class="badge-item">
+          <span class="badge-icon">🔒</span>
+          <span class="badge-text" data-i18n="secure_payment">Secure Payment</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">📱</span>
+          <span class="badge-text" data-i18n="multiple_options">Multiple Options</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text" data-i18n="instant_receipt">Instant Receipt</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-decoration">
+      <div class="floating-icon icon-1">💰</div>
+      <div class="floating-icon icon-2">💳</div>
+      <div class="floating-icon icon-3">🧾</div>
+    </div>
+  </section>
+
+  <main class="billing-main">
+    
+    <!-- Patient Info Card -->
+    <section class="patient-info-card">
+      <div class="info-header">
+        <h3 data-i18n="patient_information">👤 Patient Information</h3>
+        <span class="info-badge" data-i18n="active">Active</span>
+      </div>
+      <div class="info-content">
+        <div class="info-item">
+          <span class="info-label" data-i18n="patient_id">Patient ID:</span>
+          <span class="info-value">#PT-2024-1234</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label" data-i18n="date">Date:</span>
+          <span class="info-value" id="currentDate"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label" data-i18n="status">Status:</span>
+          <span class="status-badge" data-i18n="pending_payment">Pending Payment</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pharmacy Bill Section -->
+    <section class="bill-section pharmacy-section">
+      <div class="section-header">
+        <div class="header-left">
+          <span class="section-icon">💊</span>
+          <h2 data-i18n="pharmacy_charges">Pharmacy Charges</h2>
+        </div>
+        <span class="item-count" id="pharmacyCount">0 items</span>
+      </div>
+      
+      <div class="bill-items-container" id="pharmacyBill">
+        <!-- Dynamic pharmacy items will be inserted here -->
+        <!-- Each item uses: img/medicines/[medicine-name].jpg -->
+      </div>
+      
+      <div class="section-subtotal">
+        <span data-i18n="subtotal">Subtotal:</span>
+        <span class="amount">₹<span id="pharmacyTotal">0</span></span>
+      </div>
+    </section>
+
+    <!-- Lab Tests Bill Section -->
+    <section class="bill-section lab-section">
+      <div class="section-header">
+        <div class="header-left">
+          <span class="section-icon">🧪</span>
+          <h2 data-i18n="lab_charges">Lab Test Charges</h2>
+        </div>
+        <span class="item-count" id="labCount">0 items</span>
+      </div>
+      
+      <div class="bill-items-container" id="labBill">
+        <!-- Dynamic lab test items will be inserted here -->
+        <!-- Each item uses: img/lab/[test-name].jpg -->
+      </div>
+      
+      <div class="section-subtotal">
+        <span data-i18n="subtotal">Subtotal:</span>
+        <span class="amount">₹<span id="labTotal">0</span></span>
+      </div>
+    </section>
+
+    <!-- Bill Summary Card -->
+    <section class="bill-summary-card">
+      <h3 data-i18n="bill_summary">📊 Bill Summary</h3>
+      
+      <div class="summary-rows">
+        <div class="summary-row">
+          <span class="row-label" data-i18n="pharmacy_charges">Pharmacy Charges</span>
+          <span class="row-value">₹<span id="summaryPharmacy">0</span></span>
+        </div>
+        <div class="summary-row">
+          <span class="row-label" data-i18n="lab_charges">Lab Test Charges</span>
+          <span class="row-value">₹<span id="summaryLab">0</span></span>
+        </div>
+        <div class="summary-row subtotal-row">
+          <span class="row-label" data-i18n="subtotal">Subtotal</span>
+          <span class="row-value">₹<span id="summarySubtotal">0</span></span>
+        </div>
+        <div class="summary-row discount-row">
+          <span class="row-label" data-i18n="discount">Discount (5%)</span>
+          <span class="row-value discount">- ₹<span id="summaryDiscount">0</span></span>
+        </div>
+        <div class="summary-row tax-row">
+          <span class="row-label" data-i18n="gst">GST (18%)</span>
+          <span class="row-value">+ ₹<span id="summaryTax">0</span></span>
+        </div>
+        <div class="summary-row total-row">
+          <span class="row-label" data-i18n="grand_total">Grand Total</span>
+          <span class="row-value grand-total" id="grandTotalDisplay">₹<span id="grandTotal">0</span></span>
+        </div>
+      </div>
+
+      <div class="payment-notice">
+        <span class="notice-icon">ℹ️</span>
+        <p data-i18n="payment_notice">All charges are inclusive of applicable taxes and fees</p>
+      </div>
+    </section>
+
+    <!-- Separate Grand Total Display -->
+    <section class="grand-total-section">
+      <div class="grand-total-box">
+        <h2 data-i18n="grand_total">Grand Total</h2>
+        <div class="grand-total-amount">₹<span id="finalGrandTotal">0</span></div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="action-buttons">
+      <button class="btn-pay" onclick="proceedToPay()">
+        <span class="btn-icon">💳</span>
+        <span class="btn-text" data-i18n="proceed_payment">Proceed to Payment</span>
+      </button>
+      <button class="btn-clear" onclick="clearBills()">
+        <span class="btn-icon">🗑️</span>
+        <span class="btn-text" data-i18n="clear_bills">Clear All Bills</span>
+      </button>
+    </section>
+
+    <!-- Empty State (Hidden by default) -->
+    <section class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📋</div>
+      <h3 data-i18n="no_bills">No Bills Found</h3>
+      <p data-i18n="no_bills_desc">You don't have any pending bills at the moment</p>
+      <a href="pharmacy.html" class="empty-btn" data-i18n="browse_pharmacy">Browse Pharmacy</a>
+    </section>
+
+  </main>
+
+  <a href="dashboard.html" class="back-btn" data-i18n="back_dashboard">🔙 Back to Dashboard</a>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <div class="modal-icon success">✓</div>
+      <h3 data-i18n="payment_success">Payment Successful!</h3>
+      <p data-i18n="payment_success_msg">Your bill has been paid successfully</p>
+      <button class="modal-btn" onclick="closeModal()" data-i18n="done">Done</button>
+    </div>
+  </div>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Hospital">
+      📞
+    </a>
+  </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .floating-phone-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    .floating-phone-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+    .floating-phone-icon a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================
+// BILLING PAGE - JAVASCRIPT
+// ============================================
+
+// DOM Elements
+const pharmacyBillContainer = document.getElementById("pharmacyBill");
+const labBillContainer = document.getElementById("labBill");
+const pharmacyTotalEl = document.getElementById("pharmacyTotal");
+const labTotalEl = document.getElementById("labTotal");
+const pharmacyCountEl = document.getElementById("pharmacyCount");
+const labCountEl = document.getElementById("labCount");
+const summaryPharmacyEl = document.getElementById("summaryPharmacy");
+const summaryLabEl = document.getElementById("summaryLab");
+const summarySubtotalEl = document.getElementById("summarySubtotal");
+const summaryDiscountEl = document.getElementById("summaryDiscount");
+const summaryTaxEl = document.getElementById("summaryTax");
+const grandTotalEl = document.getElementById("grandTotal");
+const finalGrandTotalEl = document.getElementById("finalGrandTotal");
+const currentDateEl = document.getElementById("currentDate");
+const emptyState = document.getElementById("emptyState");
+const successModal = document.getElementById("successModal");
+const toast = document.getElementById("toast");
+
+// Variables
+let pharmacyTotal = 0;
+let labTotal = 0;
+
+// Initialize page
+document.addEventListener("DOMContentLoaded", () => {
+  setCurrentDate();
+  loadBills();
+});
+
+// Set current date
+function setCurrentDate() {
+  const today = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  currentDateEl.textContent = today.toLocaleDateString('en-US', options);
+}
+
+// Load bills from localStorage
+function loadBills() {
+  // Load pharmacy bills
+  const pharmacyBill = JSON.parse(localStorage.getItem("pharmacyCart")) || [];
+  pharmacyTotal = 0;
+
+  pharmacyBillContainer.innerHTML = ""; // Clear existing content
+
+  if (pharmacyBill.length > 0) {
+    pharmacyBill.forEach(item => {
+      addBillItem(pharmacyBillContainer, item);
+      pharmacyTotal += item.price;
+    });
+  } else {
+    pharmacyBillContainer.innerHTML = '<p style="text-align: center; color: #b2bec3; padding: 30px;">No pharmacy items</p>';
+  }
+
+  pharmacyTotalEl.textContent = pharmacyTotal;
+  pharmacyCountEl.textContent = `${pharmacyBill.length} item${pharmacyBill.length !== 1 ? 's' : ''}`;
+  
+  // Load lab bills
+  const labBill = JSON.parse(localStorage.getItem("labCart")) || [];
+  labTotal = 0;
+
+  labBillContainer.innerHTML = ""; // Clear existing content
+
+  if (labBill.length > 0) {
+    labBill.forEach(item => {
+      addBillItem(labBillContainer, item);
+      labTotal += item.price;
+    });
+  } else {
+    labBillContainer.innerHTML = '<p style="text-align: center; color: #b2bec3; padding: 30px;">No lab tests</p>';
+  }
+  
+  labTotalEl.textContent = labTotal;
+  labCountEl.textContent = `${labBill.length} item${labBill.length !== 1 ? 's' : ''}`;
+  
+  // Calculate and display summary
+  calculateSummary();
+  
+  // Show empty state if no bills
+  if (pharmacyBill.length === 0 && labBill.length === 0) {
+    showEmptyState();
+  }
+}
+
+// Add bill item to container
+function addBillItem(containerOrId, item, type) {
+  // Accept either a DOM element or an element id string
+  const container = typeof containerOrId === 'string' ? document.getElementById(containerOrId) : containerOrId;
+  if (!container) return;
+
+  const card = document.createElement("div");
+  card.classList.add("bill-card");
+
+  // Handle different object keys
+  let title = item.name || item.test || "Service";
+  let desc = item.desc || "";
+  let img = item.img || "img/default.jpg";
+
+  card.innerHTML = `
+    <img src="${img}" alt="${title}">
+    <div class="bill-card-content">
+      <div class="bill-card-info">
+        <h3>${title}</h3>
+        <p>${desc}</p>
+      </div>
+      <div class="bill-card-price">₹${item.price}</div>
+    </div>
+  `;
+
+  container.appendChild(card);
+}
+
+// Calculate summary with discount and tax
+function calculateSummary() {
+  const subtotal = pharmacyTotal + labTotal;
+  const discount = Math.round(subtotal * 0.05); // 5% discount
+  const afterDiscount = subtotal - discount;
+  const tax = Math.round(afterDiscount * 0.18); // 18% GST
+  const grandTotal = afterDiscount + tax;
+  
+  // Update summary elements
+  summaryPharmacyEl.textContent = pharmacyTotal;
+  summaryLabEl.textContent = labTotal;
+  summarySubtotalEl.textContent = subtotal;
+  summaryDiscountEl.textContent = discount;
+  summaryTaxEl.textContent = tax;
+  grandTotalEl.textContent = grandTotal;
+  
+  // Update separate grand total display
+  if (finalGrandTotalEl) {
+    finalGrandTotalEl.textContent = grandTotal;
+  }
+  
+  // Ensure the grand total is visible and updated
+  console.log('Grand Total Updated:', grandTotal, 'Element:', grandTotalEl);
+}
+
+// Show empty state
+function showEmptyState() {
+  document.querySelectorAll('.bill-section, .patient-info-card, .bill-summary-card, .action-buttons').forEach(el => {
+    el.style.display = 'none';
+  });
+  emptyState.style.display = 'block';
+}
+
+// Download bill as PDF
+function downloadBill() {
+  const subtotal = pharmacyTotal + labTotal;
+  
+  if (subtotal === 0) {
+    showToast("No bills to download!");
+    return;
+  }
+  
+  showToast("Preparing your invoice for download...");
+  
+  // Create invoice content
+  const today = new Date();
+  const date = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  
+  let invoiceHTML = `
+    <div style="font-family: Arial, sans-serif; padding: 40px; max-width: 900px;">
+      <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #667eea; padding-bottom: 20px;">
+        <h1 style="margin: 0; color: #667eea; font-size: 32px;">🏥 CityCare Hospital</h1>
+        <p style="margin: 5px 0; color: #666;">Patient Billing Invoice</p>
+        <p style="margin: 5px 0; color: #999; font-size: 12px;">Date: ${date}</p>
+      </div>
+      
+      <div style="margin-bottom: 30px;">
+        <h3 style="color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px;">💊 Pharmacy Charges</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+          <thead>
+            <tr style="background: #f8f9ff;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Item</th>
+              <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">Price</th>
+            </tr>
+          </thead>
+          <tbody>`;
+  
+  const pharmacyBill = JSON.parse(localStorage.getItem("pharmacyCart")) || [];
+  if (pharmacyBill.length > 0) {
+    pharmacyBill.forEach(item => {
+      invoiceHTML += `
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">${item.name}</td>
+          <td style="padding: 12px; text-align: right; border: 1px solid #ddd;">₹${item.price}</td>
+        </tr>`;
+    });
+  } else {
+    invoiceHTML += `<tr><td colspan="2" style="padding: 12px; text-align: center; border: 1px solid #ddd; color: #999;">No pharmacy items</td></tr>`;
+  }
+  
+  invoiceHTML += `
+          </tbody>
+        </table>
+      </div>`;
+  
+  const labBill = JSON.parse(localStorage.getItem("labCart")) || [];
+  if (labBill.length > 0) {
+    invoiceHTML += `
+      <div style="margin-bottom: 30px;">
+        <h3 style="color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px;">🧪 Lab Test Charges</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+          <thead>
+            <tr style="background: #f8f9ff;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Test</th>
+              <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">Price</th>
+            </tr>
+          </thead>
+          <tbody>`;
+    
+    labBill.forEach(item => {
+      invoiceHTML += `
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">${item.name || item.test || 'Service'}</td>
+          <td style="padding: 12px; text-align: right; border: 1px solid #ddd;">₹${item.price}</td>
+        </tr>`;
+    });
+    
+    invoiceHTML += `
+          </tbody>
+        </table>
+      </div>`;
+  }
+  
+  const discount = Math.round((pharmacyTotal + labTotal) * 0.05);
+  const afterDiscount = (pharmacyTotal + labTotal) - discount;
+  const tax = Math.round(afterDiscount * 0.18);
+  const grandTotal = afterDiscount + tax;
+  
+  invoiceHTML += `
+      <div style="margin-top: 30px; text-align: right;">
+        <table style="width: 100%; max-width: 400px; margin-left: auto; border-collapse: collapse;">
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; text-align: left; font-weight: 600;">Subtotal:</td>
+            <td style="padding: 12px; text-align: right;">₹${pharmacyTotal + labTotal}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd; background: #f0f8ff;">
+            <td style="padding: 12px; text-align: left; font-weight: 600; color: #11998e;">Discount (5%):</td>
+            <td style="padding: 12px; text-align: right; color: #11998e;">- ₹${discount}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd; background: #fff5f5;">
+            <td style="padding: 12px; text-align: left; font-weight: 600; color: #f5576c;">GST (18%):</td>
+            <td style="padding: 12px; text-align: right; color: #f5576c;">+ ₹${tax}</td>
+          </tr>
+          <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <td style="padding: 15px; text-align: left; font-weight: 800; color: white; font-size: 16px;">Grand Total:</td>
+            <td style="padding: 15px; text-align: right; font-weight: 800; color: white; font-size: 18px;">₹${grandTotal}</td>
+          </tr>
+        </table>
+      </div>
+      
+      <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #999; font-size: 12px;">
+        <p>Thank you for choosing CityCare Hospital!</p>
+        <p>This is a computer-generated invoice. No signature required.</p>
+      </div>
+    </div>
+  `;
+  
+  const element = document.createElement('div');
+  element.innerHTML = invoiceHTML;
+  
+  const options = {
+    margin: 10,
+    filename: `Hospital-Invoice-${date.replace(/\s+/g, '-')}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+  };
+  
+  html2pdf().set(options).from(element).save().then(() => {
+    showToast("✅ Invoice downloaded successfully!");
+  }).catch(err => {
+    showToast("❌ Error downloading invoice!");
+    console.error('PDF generation error:', err);
+  });
+}
+
+// Proceed to payment
+function proceedToPay() {
+  const subtotal = pharmacyTotal + labTotal;
+  
+  if (subtotal === 0) {
+    showToast("Your cart is empty!");
+    return;
+  }
+  
+  showToast("Processing payment...");
+  
+  // Simulate payment processing
+  setTimeout(() => {
+    successModal.classList.add('show');
+    
+    // Clear bills after successful payment
+    setTimeout(() => {
+      localStorage.removeItem("pharmacyCart");
+      localStorage.removeItem("labCart");
+    }, 2000);
+  }, 2000);
+}
+
+// Clear all bills
+function clearBills() {
+  const subtotal = pharmacyTotal + labTotal;
+  
+  if (subtotal === 0) {
+    showToast("No bills to clear!");
+    return;
+  }
+  
+  if (confirm("Are you sure you want to clear all bills? This action cannot be undone.")) {
+    localStorage.removeItem("pharmacyCart");
+    localStorage.removeItem("labCart");
+    showToast("✅ All bills cleared successfully!");
+    
+    // Reload after short delay
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
+  }
+}
+
+// Close modal
+function closeModal() {
+  successModal.classList.remove('show');
+  
+  // Redirect to dashboard after closing modal
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 500);
+}
+
+// Show toast notification
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+// Close modal when clicking outside
+successModal.addEventListener('click', (e) => {
+  if (e.target === successModal) {
+    closeModal();
+  }
+});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="js/language-config.js"></script>
+</body>
+</html>

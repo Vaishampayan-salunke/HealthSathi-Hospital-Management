@@ -1,0 +1,953 @@
+// ============================
+// COMPLETE MULTILANGUAGE CONFIGURATION
+// Supports: English, Hindi, Tamil, Telugu, Kannada
+// ============================
+
+const TRANSLATIONS = {
+  en: {
+    // Navbar
+    appointments: "Appointments",
+    departments: "Departments",
+    pharmacy: "Pharmacy",
+    lab: "Lab",
+    billing: "Billing",
+    chatbot: "AI Chatbot",
+    emergency: "🚨 Emergency",
+    logout: "Logout",
+    dashboard: "Dashboard",
+    
+    // Dashboard
+    welcome: "Welcome to Lifeline Multispeciality Hospital — caring for your health every step of the way!",
+    subtitle: "Choose a department to get started",
+    
+    // Departments
+    cardiology: "🫀 Cardiology",
+    cardiology_desc: "Specialized heart care — consultations, angiography and rehab services.",
+    orthopedics: "🦴 Orthopedics",
+    orthopedics_desc: "Bone & joint treatments including arthroscopy and joint replacement.",
+    dentistry: "🦷 Dentistry",
+    dentistry_desc: "Complete dental care: checkups, cosmetic dentistry and emergency extraction.",
+    neurology: "🧠 Neurology",
+    neurology_desc: "Diagnosis and treatment for brain & nervous system disorders.",
+    dermatology: "🌸 Dermatology",
+    dermatology_desc: "Skin treatments, mole removal, and allergy testing.",
+    gynecology: "🤰 Gynecology",
+    gynecology_desc: "Women's health, prenatal care and obstetrics services.",
+    pediatrics: "👶 Pediatrics",
+    pediatrics_desc: "Child health, immunizations and growth monitoring.",
+    general: "🧬 General Medicine",
+    general_desc: "Primary care, diagnostics and chronic disease management.",
+    
+    // Appointments Page
+    book_appointment: "📅 Book Your Appointment",
+    appointment_subtitle: "Schedule a consultation with our expert doctors",
+    patient_info: "📝 Patient Information",
+    patient_name: "Patient Name",
+    enter_name: "Enter full name",
+    gender: "Gender",
+    select_gender: "Select Gender",
+    male: "Male",
+    female: "Female",
+    other: "Other",
+    age: "Age",
+    enter_age: "Enter age",
+    phone: "Phone Number",
+    phone_placeholder: "10-digit mobile number",
+    email: "Email Address",
+    email_placeholder: "your.email@example.com",
+    department: "Department",
+    select_dept: "Select Department",
+    doctor: "Doctor",
+    select_doctor: "Select Doctor",
+    appointment_date: "Appointment Date",
+    time_slot: "Time Slot",
+    book_btn: "✓ Book Appointment",
+    reset_btn: "↻ Reset Form",
+    your_appointments: "📋 Your Appointments",
+    action: "Action",
+    cancel_btn: "Cancel",
+    no_appointments: "No appointments booked yet",
+    appointment_success: "Appointment booked successfully!",
+    cancel_confirm: "Are you sure you want to cancel this appointment?",
+    
+    // Pharmacy Page
+    pharmacy_title: "💊 Pharmacy",
+    pharmacy_subtitle: "Browse and order medicines",
+    search_medicines: "🔍 Search medicines...",
+    your_cart: "🛒 Your Cart",
+    total: "Total",
+    checkout: "Checkout → Billing",
+    add_to_cart: "Add to Cart",
+    medicine_added: "added to cart and saved to billing.",
+    items_added: "✅ Items added to billing!",
+    
+    // Lab Page
+    lab_title: "🧪 Diagnostic Lab",
+    lab_subtitle: "Book your lab tests online",
+    search_tests: "🔍 Search lab tests...",
+    selected_tests: "🛒 Selected Tests",
+    add_test: "Add",
+    test_added: "added to cart.",
+    tests_added: "✅ Lab tests added to billing!",
+    
+    // Billing Page
+    billing_title: "💳 Patient Billing",
+    billing_subtitle: "Review your charges and complete payment securely",
+    secure_payment: "Secure Payment",
+    multiple_options: "Multiple Options",
+    instant_receipt: "Instant Receipt",
+    patient_information: "👤 Patient Information",
+    patient_id: "Patient ID:",
+    date: "Date:",
+    status: "Status:",
+    active: "Active",
+    pending_payment: "Pending Payment",
+    pharmacy_charges: "💊 Pharmacy Charges",
+    lab_charges: "🧪 Lab Test Charges",
+    items: "items",
+    item: "item",
+    no_pharmacy_items: "No pharmacy items",
+    no_lab_tests: "No lab tests",
+    subtotal: "Subtotal:",
+    bill_summary: "📊 Bill Summary",
+    discount: "Discount (5%)",
+    gst: "GST (18%)",
+    grand_total: "Grand Total",
+    payment_notice: "All charges are inclusive of applicable taxes and fees",
+    download_invoice: "📥 Download Invoice",
+    proceed_payment: "💳 Proceed to Payment",
+    clear_bills: "🗑️ Clear All Bills",
+    no_bills: "No Bills Found",
+    no_bills_desc: "You don't have any pending bills at the moment",
+    browse_pharmacy: "Browse Pharmacy",
+    payment_success: "Payment Successful!",
+    payment_success_msg: "Your bill has been paid successfully",
+    done: "Done",
+    preparing_invoice: "Preparing your invoice for download...",
+    invoice_downloaded: "✅ Invoice downloaded successfully!",
+    processing_payment: "Processing payment...",
+    cart_empty: "Your cart is empty!",
+    no_bills_clear: "No bills to clear!",
+    clear_confirm: "Are you sure you want to clear all bills? This action cannot be undone.",
+    bills_cleared: "✅ All bills cleared successfully!",
+    back_dashboard: "🔙 Back to Dashboard",
+    
+    // Emergency Page
+    emergency_help: "🚨 Emergency Help",
+    emergency_subtitle: "In case of an emergency, use the contacts below",
+    ambulance: "🚑 Ambulance Service",
+    helpline: "Helpline Number:",
+    call_ambulance: "📞 Call Ambulance",
+    hospital_desk: "🏥 Hospital Emergency Desk",
+    number: "Number:",
+    call_hospital: "📞 Call Hospital",
+    email_hospital: "✉ Email Hospital",
+    location: "📍 Location",
+    
+    // Nearby Hospitals Page
+    nearby_hospitals: "Nearby Hospitals",
+    find_right_hospital: "Find the right hospital for your needs",
+    search_hospital_placeholder: "Search by hospital name or city...",
+    all_states: "All states",
+    search_by_state: "Filter by state",
+    search_button: "Search",
+    search: "Search",
+    sort_by: "Sort by:",
+    name_a_z: "Name (A-Z)",
+    city: "City",
+    state: "State",
+    loading_hospitals: "Loading hospitals...",
+    no_hospitals_match: "No hospitals match your search.",
+    no_hospitals_found: "No hospitals found.",
+    contact_not_available: "Contact not available",
+    view_details: "View",
+    hospitals_available: "hospitals available",
+    verified_hospitals: "verified hospitals",
+    quality_assured: "quality assured",
+    
+    // Common
+    ok: "OK",
+    yes: "Yes",
+    no: "No",
+    save: "Save",
+    edit: "Edit",
+    delete: "Delete",
+    close: "Close",
+    back: "Back"
+  },
+  
+  hi: {
+    // Navbar
+    appointments: "नियुक्तियाँ",
+    departments: "विभाग",
+    pharmacy: "फार्मेसी",
+    lab: "लैब",
+    billing: "बिलिंग",
+    chatbot: "AI चैटबॉट",
+    emergency: "🚨 आपातकाल",
+    logout: "लॉगआउट",
+    dashboard: "डैशबोर्ड",
+    
+    // Dashboard
+    welcome: "लाइफलाइन मल्टीस्पेशलिटी हॉस्पिटल में आपका स्वागत है — आपके स्वास्थ्य की हर कदम पर देखभाल!",
+    subtitle: "शुरू करने के लिए एक विभाग चुनें",
+    
+    // Departments
+    cardiology: "🫀 कार्डियोलॉजी",
+    cardiology_desc: "विशेषज्ञ हृदय देखभाल — परामर्श, एंजियोग्राफी और पुनर्वास सेवाएं।",
+    orthopedics: "🦴 ऑर्थोपेडिक्स",
+    orthopedics_desc: "हड्डी और जोड़ों के उपचार आर्थ्रोस्कोपी और संयुक्त प्रतिस्थापन सहित।",
+    dentistry: "🦷 दंत चिकित्सा",
+    dentistry_desc: "संपूर्ण दंत देखभाल: जांच, कॉस्मेटिक दंत चिकित्सा और आपातकालीन निष्कर्षण।",
+    neurology: "🧠 तंत्रिका विज्ञान",
+    neurology_desc: "मस्तिष्क और तंत्रिका तंत्र विकारों का निदान और उपचार।",
+    dermatology: "🌸 त्वचा विज्ञान",
+    dermatology_desc: "त्वचा उपचार, तिल हटाना, और एलर्जी परीक्षण।",
+    gynecology: "🤰 स्त्री रोग",
+    gynecology_desc: "महिलाओं के स्वास्थ्य, प्रसवपूर्व देखभाल और प्रसूति सेवाएं।",
+    pediatrics: "👶 बाल रोग",
+    pediatrics_desc: "बाल स्वास्थ्य, टीकाकरण और वृद्धि निगरानी।",
+    general: "🧬 सामान्य चिकित्सा",
+    general_desc: "प्राथमिक देखभाल, नैदानिकता और पुरानी रोग प्रबंधन।",
+    
+    // Appointments Page
+    book_appointment: "📅 अपनी नियुक्ति बुक करें",
+    appointment_subtitle: "हमारे विशेषज्ञ डॉक्टरों के साथ परामर्श निर्धारित करें",
+    patient_info: "📝 रोगी की जानकारी",
+    patient_name: "रोगी का नाम",
+    enter_name: "पूरा नाम दर्ज करें",
+    gender: "लिंग",
+    select_gender: "लिंग चुनें",
+    male: "पुरुष",
+    female: "महिला",
+    other: "अन्य",
+    age: "आयु",
+    enter_age: "आयु दर्ज करें",
+    phone: "फोन नंबर",
+    phone_placeholder: "10 अंकों का मोबाइल नंबर",
+    email: "ईमेल पता",
+    email_placeholder: "आपका.ईमेल@उदाहरण.com",
+    department: "विभाग",
+    select_dept: "विभाग चुनें",
+    doctor: "डॉक्टर",
+    select_doctor: "डॉक्टर चुनें",
+    appointment_date: "नियुक्ति की तारीख",
+    time_slot: "समय स्लॉट",
+    book_btn: "✓ नियुक्ति बुक करें",
+    reset_btn: "↻ फॉर्म रीसेट करें",
+    your_appointments: "📋 आपकी नियुक्तियां",
+    action: "क्रिया",
+    cancel_btn: "रद्द करें",
+    no_appointments: "अभी तक कोई नियुक्ति नहीं बुक की गई",
+    appointment_success: "नियुक्ति सफलतापूर्वक बुक हो गई!",
+    cancel_confirm: "क्या आप वाकई इस नियुक्ति को रद्द करना चाहते हैं?",
+    
+    // Pharmacy Page
+    pharmacy_title: "💊 फार्मेसी",
+    pharmacy_subtitle: "दवाएं ब्राउज़ करें और ऑर्डर करें",
+    search_medicines: "🔍 दवाएं खोजें...",
+    your_cart: "🛒 आपकी कार्ट",
+    total: "कुल",
+    checkout: "चेकआउट → बिलिंग",
+    add_to_cart: "कार्ट में जोड़ें",
+    medicine_added: "कार्ट और बिलिंग में जोड़ा गया।",
+    items_added: "✅ आइटम बिलिंग में जोड़े गए!",
+    
+    // Lab Page
+    lab_title: "🧪 नैदानिक लैब",
+    lab_subtitle: "अपने लैब टेस्ट ऑनलाइन बुक करें",
+    search_tests: "🔍 लैब टेस्ट खोजें...",
+    selected_tests: "🛒 चयनित टेस्ट",
+    add_test: "जोड़ें",
+    test_added: "कार्ट में जोड़ा गया।",
+    tests_added: "✅ लैब टेस्ट बिलिंग में जोड़े गए!",
+    
+    // Billing Page
+    billing_title: "💳 रोगी बिलिंग",
+    billing_subtitle: "अपने शुल्क की समीक्षा करें और सुरक्षित भुगतान पूरा करें",
+    secure_payment: "सुरक्षित भुगतान",
+    multiple_options: "कई विकल्प",
+    instant_receipt: "तत्काल रसीद",
+    patient_information: "👤 रोगी की जानकारी",
+    patient_id: "रोगी आईडी:",
+    date: "तारीख:",
+    status: "स्थिति:",
+    active: "सक्रिय",
+    pending_payment: "भुगतान लंबित",
+    pharmacy_charges: "💊 फार्मेसी शुल्क",
+    lab_charges: "🧪 लैब टेस्ट शुल्क",
+    items: "आइटम",
+    item: "आइटम",
+    no_pharmacy_items: "कोई फार्मेसी आइटम नहीं",
+    no_lab_tests: "कोई लैब टेस्ट नहीं",
+    subtotal: "उपयोग:",
+    bill_summary: "📊 बिल सारांश",
+    discount: "छूट (5%)",
+    gst: "जीएसटी (18%)",
+    grand_total: "कुल योग",
+    payment_notice: "सभी शुल्क लागू करों और शुल्क सहित हैं",
+    download_invoice: "📥 चालान डाउनलोड करें",
+    proceed_payment: "💳 भुगतान के लिए आगे बढ़ें",
+    clear_bills: "🗑️ सभी बिल साफ़ करें",
+    no_bills: "कोई बिल नहीं मिला",
+    no_bills_desc: "इस समय आपके पास कोई लंबित बिल नहीं है",
+    browse_pharmacy: "फार्मेसी ब्राउज़ करें",
+    payment_success: "भुगतान सफल!",
+    payment_success_msg: "आपका बिल सफलतापूर्वक भुगतान किया गया है",
+    done: "पूर्ण",
+    preparing_invoice: "आपका चालान डाउनलोड के लिए तैयार किया जा रहा है...",
+    invoice_downloaded: "✅ चालान सफलतापूर्वक डाउनलोड हुआ!",
+    processing_payment: "भुगतान संसाधित हो रहा है...",
+    cart_empty: "आपकी कार्ट खाली है!",
+    no_bills_clear: "साफ़ करने के लिए कोई बिल नहीं!",
+    clear_confirm: "क्या आप वाकई सभी बिल साफ़ करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+    bills_cleared: "✅ सभी बिल सफलतापूर्वक साफ़ हो गए!",
+    back_dashboard: "🔙 डैशबोर्ड पर वापस",
+    
+    // Emergency Page
+    emergency_help: "🚨 आपातकालीन सहायता",
+    emergency_subtitle: "आपातकाल की स्थिति में, नीचे दिए गए संपर्कों का उपयोग करें",
+    ambulance: "🚑 एम्बुलेंस सेवा",
+    helpline: "हेल्पलाइन नंबर:",
+    call_ambulance: "📞 एम्बुलेंस कॉल करें",
+    hospital_desk: "🏥 अस्पताल आपातकालीन डेस्क",
+    number: "नंबर:",
+    call_hospital: "📞 अस्पताल को कॉल करें",
+    email_hospital: "✉ अस्पताल को ईमेल करें",
+    location: "📍 स्थान",
+    
+    // Nearby Hospitals Page
+    nearby_hospitals: "निकटवर्ती अस्पताल",
+    find_right_hospital: "अपनी आवश्यकताओं के अनुसार सही अस्पताल खोजें",
+    search_hospital_placeholder: "अस्पताल का नाम या शहर से खोजें...",
+    all_states: "सभी राज्य",
+    search_by_state: "राज्य से फ़िल्टर करें",
+    search_button: "खोजें",
+    search: "खोजें",
+    sort_by: "इससे सॉर्ट करें:",
+    name_a_z: "नाम (ए-जेड)",
+    city: "शहर",
+    state: "राज्य",
+    loading_hospitals: "अस्पताल लोड हो रहे हैं...",
+    no_hospitals_match: "कोई भी अस्पताल आपकी खोज से मेल नहीं खाता।",
+    no_hospitals_found: "कोई अस्पताल नहीं मिला।",
+    contact_not_available: "संपर्क उपलब्ध नहीं",
+    view_details: "देखें",
+    hospitals_available: "उपलब्ध अस्पताल",
+    verified_hospitals: "सत्यापित अस्पताल",
+    quality_assured: "गुणवत्ता आश्वस्त",
+    
+    // Common
+    ok: "ठीक है",
+    yes: "हाँ",
+    no: "नहीं",
+    save: "सहेजें",
+    edit: "संपादित करें",
+    delete: "हटाएं",
+    close: "बंद करें",
+    back: "वापस"
+  },
+ // Fix 1: Complete the Tamil (ta) translation object
+// Add all missing sections at the beginning of the 'ta' object:
+
+ta: {
+    // Navbar
+    appointments: "சந்திப்புகள்",
+    departments: "துறைகள்",
+    pharmacy: "மருந்தகம்",
+    lab: "ஆய்வகம்",
+    billing: "பில்லிங்",
+    chatbot: "AI சாட்பாட்",
+    emergency: "🚨 அவசரம்",
+    logout: "வெளியேறு",
+    dashboard: "டாஷ்போர்டு",
+    
+    // Dashboard
+    welcome: "லைஃப்லைன் மல்டிஸ்பெஷாலிட்டி மருத்துவமனைக்கு வரவேற்கிறோம் — உங்கள் ஆரோக்கியத்தை ஒவ்வொரு படியிலும் கவனித்துக்கொள்கிறோம்!",
+    subtitle: "தொடங்க ஒரு துறையைத் தேர்ந்தெடுக்கவும்",
+    
+    // Departments
+    cardiology: "🫀 இதயவியல்",
+    cardiology_desc: "சிறப்பு இதய பராமரிப்பு — ஆலோசனைகள், ஆஞ்சியோகிராபி மற்றும் மறுவாழ்வு சேவைகள்.",
+    orthopedics: "🦴 எலும்பியல்",
+    orthopedics_desc: "எலும்பு மற்றும் மூட்டு சிகிச்சைகள் ஆர்த்ரோஸ்கோபி மற்றும் மூட்டு மாற்றுடன்.",
+    dentistry: "🦷 பல் மருத்துவம்",
+    dentistry_desc: "முழுமையான பல் பராமரிப்பு: பரிசோதனைகள், அழகுசாதன பல் மருத்துவம் மற்றும் அவசர பிரித்தெடுத்தல்.",
+    neurology: "🧠 நரம்பியல்",
+    neurology_desc: "மூளை மற்றும் நரம்பு மண்டல கோளாறுகளுக்கான நோய் கண்டறிதல் மற்றும் சிகிச்சை.",
+    dermatology: "🌸 தோல் மருத்துவம்",
+    dermatology_desc: "தோல் சிகிச்சைகள், மச்சம் அகற்றுதல் மற்றும் ஒவ்வாமை சோதனை.",
+    gynecology: "🤰 மகப்பேறியல்",
+    gynecology_desc: "பெண்கள் ஆரோக்கியம், மகப்பேறுக்கு முந்தைய பராமரிப்பு மற்றும் மகப்பேறு சேவைகள்.",
+    pediatrics: "👶 குழந்தை மருத்துவம்",
+    pediatrics_desc: "குழந்தை ஆரோக்கியம், தடுப்பூசிகள் மற்றும் வளர்ச்சி கண்காணிப்பு.",
+    general: "🧬 பொது மருத்துவம்",
+    general_desc: "முதன்மை பராமரிப்பு, நோய் கண்டறிதல் மற்றும் நாள்பட்ட நோய் மேலாண்மை.",
+    
+    // Appointments Page
+    book_appointment: "📅 உங்கள் சந்திப்பை பதிவு செய்யுங்கள்",
+    appointment_subtitle: "எங்கள் நிபுணர் மருத்துவர்களுடன் ஆலோசனையை திட்டமிடுங்கள்",
+    patient_info: "📝 நோயாளி தகவல்",
+    patient_name: "நோயாளி பெயர்",
+    enter_name: "முழு பெயரை உள்ளிடவும்",
+    gender: "பாலினம்",
+    select_gender: "பாலினத்தைத் தேர்ந்தெடுக்கவும்",
+    male: "ஆண்",
+    female: "பெண்",
+    other: "மற்றவை",
+    age: "வயது",
+    enter_age: "வயதை உள்ளிடவும்",
+    phone: "தொலைபேசி எண்",
+    phone_placeholder: "10 இலக்க மொபைல் எண்",
+    email: "மின்னஞ்சல் முகவரி",
+    email_placeholder: "உங்கள்.மின்னஞ்சல்@உதாரணம்.com",
+    department: "துறை",
+    select_dept: "துறையைத் தேர்ந்தெடுக்கவும்",
+    doctor: "மருத்துவர்",
+    select_doctor: "மருத்துவரைத் தேர்ந்தெடுக்கவும்",
+    appointment_date: "சந்திப்பு தேதி",
+    time_slot: "நேர இடைவெளி",
+    book_btn: "✓ சந்திப்பை பதிவு செய்யுங்கள்",
+    reset_btn: "↻ படிவத்தை மீட்டமைக்கவும்",
+    your_appointments: "📋 உங்கள் சந்திப்புகள்",
+    action: "செயல்",
+    cancel_btn: "ரத்து செய்",
+    no_appointments: "இன்னும் சந்திப்புகள் பதிவு செய்யப்படவில்லை",
+    appointment_success: "சந்திப்பு வெற்றிகரமாக பதிவு செய்யப்பட்டது!",
+    cancel_confirm: "இந்த சந்திப்பை ரத்து செய்ய விரும்புகிறீர்களா?",
+    
+    // Pharmacy Page
+    pharmacy_title: "💊 மருந்தகம்",
+    pharmacy_subtitle: "மருந்துகளை உலாவவும் மற்றும் ஆர்டர் செய்யவும்",
+    search_medicines: "🔍 மருந்துகளைத் தேடுங்கள்...",
+    your_cart: "🛒 உங்கள் கூடை",
+    total: "மொத்தம்",
+    checkout: "செக்அவுட் → பில்லிங்",
+    add_to_cart: "கூடையில் சேர்க்கவும்",
+    medicine_added: "கூடை மற்றும் பில்லிங்கில் சேர்க்கப்பட்டது.",
+    items_added: "✅ பொருட்கள் பில்லிங்கில் சேர்க்கப்பட்டன!",
+    
+    // Lab Page
+    lab_title: "🧪 நோயறிதல் ஆய்வகம்",
+    lab_subtitle: "உங்கள் ஆய்வக பரிசோதனைகளை ஆன்லைனில் பதிவு செய்யுங்கள்",
+    search_tests: "🔍 ஆய்வக பரிசோதனைகளைத் தேடுங்கள்...",
+    selected_tests: "🛒 தேர்ந்தெடுக்கப்பட்ட பரிசோதனைகள்",
+    add_test: "சேர்க்கவும்",
+    test_added: "கூடையில் சேர்க்கப்பட்டது.",
+    tests_added: "✅ ஆய்வக பரிசோதனைகள் பில்லிங்கில் சேர்க்கப்பட்டன!",
+    
+    // Billing Page
+    billing_title: "💳 நோயாளி பில்லிங்",
+    billing_subtitle: "உங்கள் கட்டணங்களை மதிப்பாய்வு செய்து பாதுகாப்பாக பணம் செலுத்துங்கள்",
+    secure_payment: "பாதுகாப்பான பணம்",
+    multiple_options: "பல விருப்பங்கள்",
+    instant_receipt: "உடனடி ரசீது",
+    patient_information: "👤 நோயாளி தகவல்",
+    patient_id: "நோயாளி ID:",
+    date: "தேதி:",
+    status: "நிலை:",
+    active: "செயலில்",
+    pending_payment: "நிலுவையில் உள்ள பணம்",
+    pharmacy_charges: "💊 மருந்தக கட்டணங்கள்",
+    lab_charges: "🧪 ஆய்வக பரிசோதனை கட்டணங்கள்",
+    items: "பொருட்கள்",
+    item: "பொருள்",
+    no_pharmacy_items: "மருந்தக பொருட்கள் இல்லை",
+    no_lab_tests: "ஆய்வக பரிசோதனைகள் இல்லை",
+    subtotal: "துணை மொத்தம்:",
+    bill_summary: "📊 பில் சுருக்கம்",
+    discount: "தள்ளுபடி (5%)",
+    gst: "GST (18%)",
+    grand_total: "மொத்த தொகை",
+    payment_notice: "அனைத்து கட்டணங்களும் பொருந்தக்கூடிய வரிகள் மற்றும் கட்டணங்களை உள்ளடக்கியது",
+    download_invoice: "📥 விலைப்பட்டியலைப் பதிவிறக்கவும்",
+    proceed_payment: "💳 பணம் செலுத்துவதற்கு தொடரவும்",
+    clear_bills: "🗑️ அனைத்து பில்களையும் அழிக்கவும்",
+    no_bills: "பில்கள் கிடைக்கவில்லை",
+    no_bills_desc: "இந்த நேரத்தில் உங்களிடம் நிலுவையில் உள்ள பில்கள் இல்லை",
+    browse_pharmacy: "மருந்தகத்தை உலாவவும்",
+    
+    // Emergency Page
+    emergency_help: "🚨 அவசர உதவி",
+    emergency_subtitle: "அவசரகாலத்தில், கீழே பட்டியலிடப்பட்ட பரিచயங்களைப் பயன்படுத்தவும்",
+    ambulance: "🚑 ambulans sevai" (Tamil),
+    helpline: "உதவி লाइन எண்:",
+    call_ambulance: "📞 Ambulans्ಕ್ಕು ಕರೆ ಮಾಡಿ",
+    hospital_desk: "🏥 மருத்துவமनই அವசरेन्स डेस्क्",
+    number: "নম্বর:",
+    call_hospital: "📞 மருत्ათు्मनைয्खे कल करुन्",
+    email_hospital: "✉ மारுथუत्тಮ०निய़ेमेल्"}
+    location: "📍 অবস্থান",
+    
+    // Nearby Hospitals Page
+    nearby_hospitals: "நெருக்கமான மருத்துவமனைகள்",
+    find_right_hospital: "உங்கள் தேவைக்கு சரியான மருத்துவமனையைக் கண்டுபிடிக்கவும்",
+    search_hospital_placeholder: "மருத்துவமனையின் பெயர் அல்லது நகரத்தால் தேடுங்கள்...",
+    all_states: "அனைத்து மாநிலங்களும்",
+    search_by_state: "மாநிலம் ​​மூலம் வடிகட்டவும்",
+    search_button: "தேடுங்கள்",
+    search: "தேடுங்கள்",
+    sort_by: "இதன் மூலம் வரிசைப்படுத்தவும்:",
+    name_a_z: "பெயர் (A-Z)",
+    city: "நகரம்",
+    state: "மாநிலம்",
+    loading_hospitals: "மருத்துவமனைகளை ஏற்றுகிறது...",
+    no_hospitals_match: "உங்கள் தேடலுக்கு பொருந்தக்கூடிய மருத்துவமனைகள் எதுவும் இல்லை.",
+    no_hospitals_found: "மருத்துவமனைகள் கிடைக்கவில்லை.",
+    contact_not_available: "தொடர்பு கிடைக்கக்கூடியதல்ல",
+    view_details: "பார்க்க",
+    hospitals_available: "மருத்துவமனைகள் கிடைக்கக்கூடியவை",
+    verified_hospitals: "சரிபார்க்கப்பட்ட மருத்துவமனைகள்",
+    quality_assured: "தரம் உறுதிப்படுத்தப்பட்டது",
+    
+    // Common
+    ok: "சரி",
+    yes: "ஆம்",
+    no: "இல்லை",
+    save: "சேமி",
+    edit: "திருத்தவும்",
+    delete: "நீக்கவும்",
+    close: "மூடவும்",
+    back: "பின்னிறங்கவும்"
+  },
+
+  kn: {
+    // Navbar
+    appointments: "ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್‌ಗಳು",
+    departments: "ವಿಭಾಗಗಳು",
+    pharmacy: "ಔಷಧಾಲಯ",
+    lab: "ಲ್ಯಾಬ್",
+    billing: "ಬಿಲ್ಲಿಂಗ್",
+    chatbot: "AI ಚಾಟ್‌ಬಾಟ್",
+    emergency: "🚨 ತುರ್ತು",
+    logout: "ಲಾಗ್‌ಔಟ್",
+    dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    
+    // Dashboard
+    welcome: "ಲೈಫ್‌ಲೈನ್ ಮಲ್ಟಿಸ್ಪೆಷಾಲಿಟಿ ಆಸ್ಪತ್ರೆಗೆ ಸ್ವಾಗತ — ನಿಮ್ಮ ಆರೋಗ್ಯವನ್ನು ಪ್ರತಿ ಹಂತದಲ್ಲೂ ನೋಡಿಕೊಳ್ಳುತ್ತೇವೆ!",
+    subtitle: "ಪ್ರಾರಂಭಿಸಲು ಒಂದು ವಿಭಾಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    
+    // Departments
+    cardiology: "🫀 ಹೃದ್ರೋಗ ವಿಜ್ಞಾನ",
+    cardiology_desc: "ವಿಶೇಷ ಹೃದಯ ಆರೈಕೆ — ಸಮಾಲೋಚನೆಗಳು, ಆಂಜಿಯೋಗ್ರಫಿ ಮತ್ತು ಪುನರ್ವಸತಿ ಸೇವೆಗಳು.",
+    orthopedics: "🦴 ಮೂಳೆ ವಿಜ್ಞಾನ",
+    orthopedics_desc: "ಮೂಳೆ ಮತ್ತು ಕೀಲು ಚಿಕಿತ್ಸೆಗಳು ಆರ್ತ್ರೋಸ್ಕೊಪಿ ಮತ್ತು ಕೀಲು ಬದಲಾಯಿಸುವಿಕೆಯೊಂದಿಗೆ.",
+    dentistry: "🦷 ದಂತ ಚಿಕಿತ್ಸೆ",
+    dentistry_desc: "ಸಂಪೂರ್ಣ ದಂತ ಆರೈಕೆ: ತಪಾಸಣೆಗಳು, ಸೌಂದರ್ಯ ದಂತ ಚಿಕಿತ್ಸೆ ಮತ್ತು ತುರ್ತು ಹೊರತೆಗೆಯುವಿಕೆ.",
+    neurology: "🧠 ನರ ವಿಜ್ಞಾನ",
+    neurology_desc: "ಮೆದುಳು ಮತ್ತು ನರ ವ್ಯವಸ್ಥೆಯ ಅಸ್ವಸ್ಥತೆಗಳ ರೋಗನಿರ್ಣಯ ಮತ್ತು ಚಿಕಿತ್ಸೆ.",
+    dermatology: "🌸 ಚರ್ಮ ವಿಜ್ಞಾನ",
+    dermatology_desc: "ಚರ್ಮ ಚಿಕಿತ್ಸೆಗಳು, ಮಚ್ಚೆ ತೆಗೆಯುವಿಕೆ ಮತ್ತು ಅಲರ್ಜಿ ಪರೀಕ್ಷೆ.",
+    gynecology: "🤰 ಸ್ತ್ರೀರೋಗ ವಿಜ್ಞಾನ",
+    gynecology_desc: "ಮಹಿಳೆಯರ ಆರೋಗ್ಯ, ಪ್ರಸವಪೂರ್ವ ಆರೈಕೆ ಮತ್ತು ಪ್ರಸೂತಿ ಸೇವೆಗಳು.",
+    pediatrics: "👶 ಶಿಶುವೈದ್ಯ",
+    pediatrics_desc: "ಮಕ್ಕಳ ಆರೋಗ್ಯ, ಲಸಿಕೆಗಳು ಮತ್ತು ಬೆಳವಣಿಗೆ ಮೇಲ್ವಿಚಾರಣೆ.",
+    general: "🧬 ಸಾಮಾನ್ಯ ವೈದ್ಯಕೀಯ",
+    general_desc: "ಪ್ರಾಥಮಿಕ ಆರೈಕೆ, ರೋಗನಿರ್ಣಯ ಮತ್ತು ದೀರ್ಘಕಾಲದ ರೋಗ ನಿರ್ವಹಣೆ.",
+    
+    // Appointments Page
+    book_appointment: "📅 ನಿಮ್ಮ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ",
+    appointment_subtitle: "ನಮ್ಮ ತಜ್ಞ ವೈದ್ಯರೊಂದಿಗೆ ಸಮಾಲೋಚನೆಯನ್ನು ನಿಗದಿಪಡಿಸಿ",
+    patient_info: "📝 ರೋಗಿಯ ಮಾಹಿತಿ",
+    patient_name: "ರೋಗಿಯ ಹೆಸರು",
+    enter_name: "ಪೂರ್ಣ ಹೆಸರನ್ನು ನಮೂದಿಸಿ",
+    gender: "ಲಿಂಗ",
+    select_gender: "ಲಿಂಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    male: "ಪುರುಷ",
+    female: "ಸ್ತ್ರೀ",
+    other: "ಇತರೆ",
+    age: "ವಯಸ್ಸು",
+    enter_age: "ವಯಸ್ಸನ್ನು ನಮೂದಿಸಿ",
+    phone: "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+    phone_placeholder: "10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+    email: "ಇಮೇಲ್ ವಿಳಾಸ",
+    email_placeholder: "ನಿಮ್ಮ.ಇಮೇಲ್@ಉದಾಹರಣೆ.com",
+    department: "ವಿಭಾಗ",
+    select_dept: "ವಿಭಾಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    doctor: "ವೈದ್ಯರು",
+    select_doctor: "ವೈದ್ಯರನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    appointment_date: "ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ದಿನಾಂಕ",
+    time_slot: "ಸಮಯದ ಸ್ಲಾಟ್",
+    book_btn: "✓ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ",
+    reset_btn: "↻ ಫಾರ್ಮ್ ಮರುಹೊಂದಿಸಿ",
+    your_appointments: "📋 ನಿಮ್ಮ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್‌ಗಳು",
+    action: "ಕ್ರಿಯೆ",
+    cancel_btn: "ರದ್ದುಮಾಡಿ",
+    no_appointments: "ಇನ್ನೂ ಯಾವುದೇ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿಲ್ಲ",
+    appointment_success: "ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಬುಕ್ ಆಗಿದೆ!",
+    cancel_confirm: "ನೀವು ಖಚಿತವಾಗಿ ಈ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಅನ್ನು ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?",
+    
+    // Pharmacy Page
+    pharmacy_title: "💊 ಔಷಧಾಲಯ",
+    pharmacy_subtitle: "ಔಷಧಿಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ ಮತ್ತು ಆರ್ಡರ್ ಮಾಡಿ",
+    search_medicines: "🔍 ಔಷಧಿಗಳನ್ನು ಹುಡುಕಿ...",
+    your_cart: "🛒 ನಿಮ್ಮ ಕಾರ್ಟ್",
+    total: "ಒಟ್ಟು",
+    checkout: "ಚೆಕ್‌ಔಟ್ → ಬಿಲ್ಲಿಂಗ್",
+    add_to_cart: "ಕಾರ್ಟ್‌ಗೆ ಸೇರಿಸಿ",
+    medicine_added: "ಕಾರ್ಟ್ ಮತ್ತು ಬಿಲ್ಲಿಂಗ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ.",
+    items_added: "✅ ವಸ್ತುಗಳನ್ನು ಬಿಲ್ಲಿಂಗ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ!",
+    
+    // Lab Page
+    lab_title: "🧪 ರೋಗನಿರ್ಣಯ ಲ್ಯಾಬ್",
+    lab_subtitle: "ನಿಮ್ಮ ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ",
+    search_tests: "🔍 ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಗಳನ್ನು ಹುಡುಕಿ...",
+    selected_tests: "🛒 ಆಯ್ಕೆಮಾಡಿದ ಪರೀಕ್ಷೆಗಳು",
+    add_test: "ಸೇರಿಸಿ",
+    test_added: "ಕಾರ್ಟ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ.",
+    tests_added: "✅ ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಗಳನ್ನು ಬಿಲ್ಲಿಂಗ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ!",
+    
+    // Billing Page
+    billing_title: "💳 ರೋಗಿ ಬಿಲ್ಲಿಂಗ್",
+    billing_subtitle: "ನಿಮ್ಮ ಶುಲ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸುರಕ್ಷಿತವಾಗಿ ಪಾವತಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ",
+    secure_payment: "ಸುರಕ್ಷಿತ ಪಾವತಿ",
+    multiple_options: "ಅನೇಕ ಆಯ್ಕೆಗಳು",
+    instant_receipt: "ತ್ವರಿತ ರಸೀದಿ",
+    patient_information: "👤 ರೋಗಿಯ ಮಾಹಿತಿ",
+    patient_id: "ರೋಗಿ ID:",
+    date: "ದಿನಾಂಕ:",
+    status: "ಸ್ಥಿತಿ:",
+    active: "ಸಕ್ರಿಯ",
+    pending_payment: "ಬಾಕಿ ಪಾವತಿ",
+    pharmacy_charges: "💊 ಔಷಧಾಲಯ ಶುಲ್ಕಗಳು",
+    lab_charges: "🧪 ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆ ಶುಲ್ಕಗಳು",
+    items: "ವಸ್ತುಗಳು",
+    item: "ವಸ್ತು",
+    no_pharmacy_items: "ಔಷಧಾಲಯ ವಸ್ತುಗಳಿಲ್ಲ",
+    no_lab_tests: "ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಗಳಿಲ್ಲ",
+    subtotal: "ಉಪ ಮೊತ್ತ:",
+    bill_summary: "📊 ಬಿಲ್ ಸಾರಾಂಶ",
+    discount: "ರಿಯಾಯಿತಿ (5%)",
+    gst: "GST (18%)",
+    grand_total: "ಒಟ್ಟು ಮೊತ್ತ",
+    payment_notice: "ಎಲ್ಲಾ ಶುಲ್ಕಗಳು ಅನ್ವಯವಾಗುವ ತೆರಿಗೆಗಳು ಮತ್ತು ಶುಲ್ಕಗಳನ್ನು ಒಳಗೊಂಡಿವೆ",
+    download_invoice: "📥 ಇನ್‌ವಾಯ್ಸ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    proceed_payment: "💳 ಪಾವತಿಗೆ ಮುಂದುವರಿಯಿರಿ",
+    clear_bills: "🗑️ ಎಲ್ಲಾ ಬಿಲ್‌ಗಳನ್ನು ತೆರವುಮಾಡಿ",
+    no_bills: "ಯಾವುದೇ ಬಿಲ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+    no_bills_desc: "ಪ್ರಸ್ತುತ ನೀವು ಯಾವುದೇ ಬಾಕಿ ಬಿಲ್‌ಗಳನ್ನು ಹೊಂದಿಲ್ಲ",
+    browse_pharmacy: "ಔಷಧಾಲಯವನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ",
+    payment_success: "ಪಾವತಿ ಯಶಸ್ವಿಯಾಗಿದೆ!",
+    payment_success_msg: "ನಿಮ್ಮ ಬಿಲ್ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ",
+    done: "ಮುಗಿದಿದೆ",
+    preparing_invoice: "ನಿಮ್ಮ ಇನ್‌ವಾಯ್ಸ್ ಡೌನ್‌ಲೋಡ್‌ಗಾಗಿ ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...",
+    invoice_downloaded: "✅ ಇನ್‌ವಾಯ್ಸ್ ಯಶಸ್ವಿಯಾಗಿ ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ!",
+    processing_payment: "ಪಾವತಿ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ...",
+    cart_empty: "ನಿಮ್ಮ ಕಾರ್ಟ್ ಖಾಲಿಯಾಗಿದೆ!",
+    no_bills_clear: "ತೆರವುಮಾಡಲು ಬಿಲ್‌ಗಳಿಲ್ಲ!",
+    clear_confirm: "ನೀವು ಖಚಿತವಾಗಿ ಎಲ್ಲಾ ಬಿಲ್‌ಗಳನ್ನು ತೆರವುಮಾಡಲು ಬಯಸುವಿರಾ? ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+    bills_cleared: "✅ ಎಲ್ಲಾ ಬಿಲ್‌ಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ತೆರವುಮಾಡಲಾಗಿದೆ!",
+    back_dashboard: "🔙 ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹಿಂತಿರುಗಿ",
+    
+    // Emergency Page
+    emergency_help: "🚨 ತುರ್ತು ಸಹಾಯ",
+    emergency_subtitle: "ತುರ್ತು ಪರಿಸ್ಥಿತಿಯಲ್ಲಿ, ಕೆಳಗಿನ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸಿ",
+    ambulance: "🚑 ಆಂಬ್ಯುಲೆನ್ಸ್ ಸೇವೆ",
+    helpline: "ಸಹಾಯವಾಣಿ ಸಂಖ್ಯೆ:",
+    call_ambulance: "📞 ಆಂಬ್ಯುಲೆನ್ಸ್‌ಗೆ ಕರೆ ಮಾಡಿ",
+    hospital_desk: "🏥 ಆಸ್ಪತ್ರೆ ತುರ್ತು ಡೆಸ್ಕ್",
+    number: "ಸಂಖ್ಯೆ:",
+    call_hospital: "📞 ಆಸ್ಪತ್ರೆಗೆ ಕರೆ ಮಾಡಿ",
+    email_hospital: "✉ ಆಸ್ಪತ್ರೆಗೆ ಇಮೇಲ್ ಮಾಡಿ",
+    location: "📍 ಸ್ಥಳ",
+    
+    // Nearby Hospitals Page
+    nearby_hospitals: "ಹತ್ತಿರ ಆಸ್ಪತ್ರೆಗಳು",
+    find_right_hospital: "ನಿಮ್ಮ ಅಗತ್ಯದ ಸರಿಯಾದ ಆಸ್ಪತ್ರೆ ಹುಡುಕಿ",
+    search_hospital_placeholder: "ಆಸ್ಪತ್ರೆ ಹೆಸರು ಅಥವಾ ನಗರದಿಂದ ಹುಡುಕಿ...",
+    all_states: "ಎಲ್ಲಾ ರಾಜ್ಯಗಳು",
+    search_by_state: "ರಾಜ್ಯದ ಮೂಲಕ ಫಿಲ್ಟರ್ ಮಾಡಿ",
+    search_button: "ಹುಡುಕಿ",
+    search: "ಹುಡುಕಿ",
+    sort_by: "ಇದರಿಂದ ವಿಂಗಡಿಸಿ:",
+    name_a_z: "ಹೆಸರು (A-Z)",
+    city: "ನಗರ",
+    state: "ರಾಜ್ಯ",
+    loading_hospitals: "ಆಸ್ಪತ್ರೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಿಸುತ್ತಿದೆ...",
+    no_hospitals_match: "ನಿಮ್ಮ ಹುಡುಕಾಟಕ್ಕೆ ಯಾವುದೇ ಆಸ್ಪತ್ರೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.",
+    no_hospitals_found: "ಆಸ್ಪತ್ರೆಗಳನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.",
+    contact_not_available: "ಸಂಪರ್ಕ ಲಭ್ಯವಿಲ್ಲ",
+    view_details: "ವೀಕ್ಷಿಸಿ",
+    hospitals_available: "ಆಸ್ಪತ್ರೆಗಳು ಲಭ್ಯವಿದೆ",
+    verified_hospitals: "ಪರಿಶೀಲಿತ ಆಸ್ಪತ್ರೆಗಳು",
+    quality_assured: "ಗುಣಮಾನ ಖಚಿತ",
+    
+    // Common
+    ok: "ಸರಿ",
+    yes: "ಹೌದು",
+    no: "ಇಲ್ಲ",
+    save: "ಉಳಿಸಿ",
+    edit: "ಸಂಪಾದಿಸಿ",
+    delete: "ಅಳಿಸಿ",
+    close: "ಮುಚ್ಚಿ",
+    back: "ಹಿಂದೆ"
+  },
+  
+  te: {
+    // Navbar
+    appointments: "అపాయింట్‌మెంట్లు",
+    departments: "విభాగాలు",
+    pharmacy: "ఫార్మసీ",
+    lab: "ల్యాబ్",
+    billing: "బిల్లింగ్",
+    chatbot: "AI చాట్‌బాట్",
+    emergency: "🚨 అత్యవసరం",
+    logout: "లాగ్అవుట్",
+    dashboard: "డాష్‌బోర్డ్",
+    
+    // Dashboard
+    welcome: "లైఫ్‌లైన్ మల్టీస్పెషాలిటీ హాస్పిటల్‌కు స్వాగతం — మీ ఆరోగ్యానికి ప్రతి అడుగులో శ్రద్ధ తీసుకుంటాం!",
+    subtitle: "ప్రారంభించడానికి ఒక విభాగాన్ని ఎంచుకోండి",
+    
+    // Departments
+    cardiology: "🫀 కార్డియాలజీ",
+    cardiology_desc: "ప్రత్యేక హృదయ సంరక్షణ — సంప్రదింపులు, యాంజియోగ్రఫీ మరియు పునరావాస సేవలు.",
+    orthopedics: "🦴 ఆర్థోపెడిక్స్",
+    orthopedics_desc: "ఎముక మరియు కీళ్ల చికిత్సలు ఆర్థ్రోస్కోపీ మరియు కీలు మార్పిడితో సహా.",
+    dentistry: "🦷 దంత వైద్యం",
+    dentistry_desc: "పూర్తి దంత సంరక్షణ: పరీక్షలు, సౌందర్య దంత వైద్యం మరియు అత్యవసర వెలికితీత.",
+    neurology: "🧠 న్యూరాలజీ",
+    neurology_desc: "మెదడు మరియు నాడీ వ్యవస్థ రుగ్మతల నిర్ధారణ మరియు చికిత్స.",
+    dermatology: "🌸 చర్మ వైద్యం",
+    dermatology_desc: "చర్మ చికిత్సలు, మచ్చల తొలగింపు మరియు అలెర్జీ పరీక్ష.",
+    gynecology: "🤰 స్త్రీ వైద్యం",
+    gynecology_desc: "మహిళా ఆరోగ్యం, ప్రసవానికి ముందు సంరక్షణ మరియు ప్రసూతి సేవలు.",
+    pediatrics: "👶 పీడియాట్రిక్స్",
+    pediatrics_desc: "పిల్లల ఆరోగ్యం, టీకాలు మరియు పెరుగుదల పర్యవేక్షణ.",
+    general: "🧬 సాధారణ వైద్యం",
+    general_desc: "ప్రాథమిక సంరక్షణ, నిర్ధారణలు మరియు దీర్ఘకాలిక వ్యాధి నిర్వహణ.",
+    
+    // Appointments Page
+    book_appointment: "📅 మీ అపాయింట్‌మెంట్ బుక్ చేయండి",
+    appointment_subtitle: "మా నిపుణుల వైద్యులతో సంప్రదింపును షెడ్యూల్ చేయండి",
+    patient_info: "📝 రోగి సమాచారం",
+    patient_name: "రోగి పేరు",
+    enter_name: "పూర్తి పేరు నమోదు చేయండి",
+    gender: "లింగం",
+    select_gender: "లింగం ఎంచుకోండి",
+    male: "పురుషుడు",
+    female: "స్త్రీ",
+    other: "ఇతర",
+    age: "వయస్సు",
+    enter_age: "వయస్సు నమోదు చేయండి",
+    phone: "ఫోన్ నంబర్",
+    phone_placeholder: "10 అంకెల మొబైల్ నంబర్",
+    email: "ఇమెయిల్ చిరునామా",
+    email_placeholder: "మీ.ఇమెయిల్@ఉదాహరణ.com",
+    department: "విభాగం",
+    select_dept: "విభాగం ఎంచుకోండి",
+    doctor: "వైద్యుడు",
+    select_doctor: "వైద్యుడిని ఎంచుకోండి",
+    appointment_date: "అపాయింట్‌మెంట్ తేదీ",
+    time_slot: "సమయ స్లాట్",
+    book_btn: "✓ అపాయింట్‌మెంట్ బుక్ చేయండి",
+    reset_btn: "↻ ఫారమ్ రీసెట్ చేయండి",
+    your_appointments: "📋 మీ అపాయింట్‌మెంట్లు",
+    action: "చర్య",
+    cancel_btn: "రద్దు చేయండి",
+    no_appointments: "ఇంకా అపాయింట్‌మెంట్లు బుక్ చేయలేదు",
+    appointment_success: "అపాయింట్‌మెంట్ విజయవంతంగా బుక్ చేయబడింది!",
+    cancel_confirm: "మీరు ఖచ్చితంగా ఈ అపాయింట్‌మెంట్‌ను రద్దు చేయాలనుకుంటున్నారా?",
+    
+    // Pharmacy Page
+    pharmacy_title: "💊 ఫార్మసీ",
+    pharmacy_subtitle: "మందులను బ్రౌజ్ చేయండి మరియు ఆర్డర్ చేయండి",
+    search_medicines: "🔍 మందులను శోధించండి...",
+    your_cart: "🛒 మీ కార్ట్",
+    total: "మొత్తం",
+    checkout: "చెక్అవుట్ → బిల్లింగ్",
+    add_to_cart: "కార్ట్‌కు జోడించండి",
+    medicine_added: "కార్ట్ మరియు బిల్లింగ్‌కు జోడించబడింది.",
+    items_added: "✅ అంశాలు బిల్లింగ్‌కు జోడించబడ్డాయి!",
+    
+    // Lab Page
+    lab_title: "🧪 డయాగ్నోస్టిక్ ల్యాబ్",
+    lab_subtitle: "మీ ల్యాబ్ పరీక్షలను ఆన్‌లైన్‌లో బుక్ చేయండి",
+    search_tests: "🔍 ల్యాబ్ పరీక్షలను శోధించండి...",
+    selected_tests: "🛒 ఎంచుకున్న పరీక్షలు",
+    add_test: "జోడించండి",
+    test_added: "కార్ట్‌కు జోడించబడింది.",
+    tests_added: "✅ ల్యాబ్ పరీక్షలు బిల్లింగ్‌కు జోడించబడ్డాయి!",
+    
+    // Billing Page
+    billing_title: "💳 రోగి బిల్లింగ్",
+    billing_subtitle: "మీ ఛార్జీలను సమీక్షించండి మరియు సురక్షితంగా చెల్లింపును పూర్తి చేయండి",
+    secure_payment: "సురక్షిత చెల్లింపు",
+    multiple_options: "బహుళ ఎంపికలు",
+    instant_receipt: "తక్షణ రసీదు",
+    patient_information: "👤 రోగి సమాచారం",
+    patient_id: "రోగి ID:",
+    date: "తేదీ:",
+    status: "స్థితి:",
+    active: "చురుకైన",
+    pending_payment: "పెండింగ్ చెల్లింపు",
+    pharmacy_charges: "💊 ఫార్మసీ ఛార్జీలు",
+    lab_charges: "🧪 ల్యాబ్ పరీక్ష ఛార్జీలు",
+    items: "అంశాలు",
+    item: "అంశం",
+    no_pharmacy_items: "ఫార్మసీ అంశాలు లేవు",
+    no_lab_tests: "ల్యాబ్ పరీక్షలు లేవు",
+    subtotal: "ఉప మొత్తం:",
+    bill_summary: "📊 బిల్లు సారాంశం",
+    discount: "తగ్గింపు (5%)",
+    gst: "GST (18%)",
+    grand_total: "గ్రాండ్ టోటల్",
+    payment_notice: "అన్ని ఛార్జీలు వర్తించే పన్నులు మరియు రుసుములతో కలిపి ఉంటాయి",
+    download_invoice: "📥 ఇన్‌వాయిస్ డౌన్‌లోడ్ చేయండి",
+    proceed_payment: "💳 చెల్లింపుకు కొనసాగండి",
+    clear_bills: "🗑️ అన్ని బిల్లులను క్లియర్ చేయండి",
+    no_bills: "బిల్లులు కనుగొనబడలేదు",
+    no_bills_desc: "ప్రస్తుతం మీకు పెండింగ్ బిల్లులు ఏవీ లేవు",
+    browse_pharmacy: "ఫార్మసీని బ్రౌజ్ చేయండి",
+    payment_success: "చెల్లింపు విజయవంతం!",
+    payment_success_msg: "మీ బిల్లు విజయవంతంగా చెల్లించబడింది",
+    done: "పూర్తయింది",
+    preparing_invoice: "మీ ఇన్‌వాయిస్ డౌన్‌లోడ్ కోసం సిద్ధం చేయబడుతోంది...",
+    invoice_downloaded: "✅ ఇన్‌వాయిస్ విజయవంతంగా డౌన్‌లోడ్ చేయబడింది!",
+    processing_payment: "చెల్లింపు ప్రాసెస్ చేయబడుతోంది...",
+    cart_empty: "మీ కార్ట్ ఖాళీగా ఉంది!",
+    no_bills_clear: "క్లియర్ చేయడానికి బిల్లులు లేవు!",
+    clear_confirm: "మీరు ఖచ్చితంగా అన్ని బిల్లులను క్లియర్ చేయాలనుకుంటున్నారా? ఈ చర్యను రద్దు చేయలేము.",
+    bills_cleared: "✅ అన్ని బిల్లులు విజయవంతంగా క్లియర్ చేయబడ్డాయి!",
+    back_dashboard: "🔙 డాష్‌బోర్డ్‌కు తిరిగి వెళ్ళండి",
+    
+    // Emergency Page
+    emergency_help: "🚨 అత్యవసర సహాయం",
+    emergency_subtitle: "అత్యవసర పరిస్థితిలో, దిగువ పేర్కొన్న పరిచయాలను ఉపయోగించండి",
+    ambulance: "🚑 అంబులెన్స్ సేవ",
+    helpline: "హెల్ప్‌లైన్ నంబర్:",
+    call_ambulance: "📞 అంబులెన్స్‌కు కాల్ చేయండి",
+    hospital_desk: "🏥 హాస్పిటల్ అత్యవసర డెస్క్",
+    number: "నంబర్:",
+    call_hospital: "📞 హాస్పిటల్‌కు కాల్ చేయండి",
+    email_hospital: "✉ హాస్పిటల్‌కు ఇమెయిల్ చేయండి",
+    location: "📍 స్థానం",
+    
+    // Nearby Hospitals Page
+    nearby_hospitals: "సమీపస్థ ఆసుపత్రులు",
+    find_right_hospital: "మీ అవసరాలకు సరైన ఆసుపత్రిని కనుగొనండి",
+    search_hospital_placeholder: "ఆసుపత్రి పేరు లేదా నగరం ద్వారా శోధించండి...",
+    all_states: "అన్ని రాష్ట్రాలు",
+    search_by_state: "రాష్ట్రం ద్వారా ఫిల్టర్ చేయండి",
+    search_button: "శోధించండి",
+    search: "శోధించండి",
+    sort_by: "దీని ద్వారా క్రమబద్ధం చేయండి:",
+    name_a_z: "పేరు (A-Z)",
+    city: "నగరం",
+    state: "రాష్ట్రం",
+    loading_hospitals: "ఆసుపత్రులను లోడ్ చేస్తోంది...",
+    no_hospitals_match: "మీ శోధనకు సరిపోయే ఆసుపత్రులు లేవు.",
+    no_hospitals_found: "ఆసుపత్రులు కనుగొనబడలేదు.",
+    contact_not_available: "సంపర్కం అందుబాటులో లేనిది",
+    view_details: "చూడండి",
+    hospitals_available: "ఆసుపత్రులు అందుబాటులో ఉన్నాయి",
+    verified_hospitals: "ధృవీకృత ఆసుపత్రులు",
+    quality_assured: "నాణ్యత నిశ్చితం చేసిన",
+    
+    // Common
+    ok: "సరే",
+    yes: "అవును",
+    no: "కాదు",
+    save: "సేవ్ చేయండి",
+    edit: "సవరించండి",
+    delete: "తొలగించండి",
+    close: "మూసివేయండి",
+    back: "వెనుకకు"
+  }
+};
+
+// Get current language from localStorage or default to 'en'
+function getCurrentLanguage() {
+    return localStorage.getItem('preferredLang') || 'en';
+}
+
+// Set language and save to localStorage
+function setLanguage(lang) {
+    localStorage.setItem('preferredLang', lang);
+    // Reload page to apply language changes
+    location.reload();
+}
+
+// Get translations for current language
+function getTranslations() {
+    const lang = getCurrentLanguage();
+    return TRANSLATIONS[lang] || TRANSLATIONS['en'];
+}
+
+// Apply translations to page elements
+function applyTranslations(lang) {
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS['en'];
+
+    // Update welcome title and subtitle
+    const welcomeTitle = document.querySelector('#welcome-title');
+    if (welcomeTitle) welcomeTitle.textContent = dict.welcome;
+    
+    const subtitle = document.querySelector('.subtitle');
+    if (subtitle) subtitle.textContent = dict.subtitle;
+
+    // Update navbar links using data-key attribute
+    const navElements = {
+        'appointments': document.querySelector('[data-key="appointments"]'),
+        'departments': document.querySelector('[data-key="departments"]'),
+        'pharmacy': document.querySelector('[data-key="pharmacy"]'),
+        'lab': document.querySelector('[data-key="lab"]'),
+        'billing': document.querySelector('[data-key="billing"]'),
+        'chatbot': document.querySelector('[data-key="chatbot"]'),
+        'emergency': document.querySelector('[data-key="emergency"]'),
+        'logout': document.querySelector('[data-key="logout"]')
+    };
+    
+    Object.keys(navElements).forEach(key => {
+        if (navElements[key]) navElements[key].textContent = dict[key];
+    });
+
+    // Update department cards
+    document.querySelectorAll('.card[data-key]').forEach(card => {
+        const key = card.dataset.key.toLowerCase();
+        const titleEl = card.querySelector('strong');
+        const descEl = card.querySelector('.card-details');
+        
+        if (titleEl && dict[key]) {
+            titleEl.textContent = dict[key];
+        }
+        const descKey = key + '_desc';
+        if (descEl && dict[descKey]) {
+            descEl.textContent = dict[descKey];
+        }
+    });
+}
+
+// Update language button display
+function updateLangButton(lang) {
+    const names = {
+        en: { flag: "🇬🇧", name: "English" },
+        hi: { flag: "🇮🇳", name: "हिन्दी" },
+        ta: { flag: "🇮🇳", name: "தமிழ்" },
+        te: { flag: "🇮🇳", name: "తెలుగు" },
+        kn: { flag: "🇮🇳", name: "ಕನ್ನಡ" }
+    };
+    const info = names[lang] || names.en;
+    const flagEl = document.getElementById('lang-flag');
+    const nameEl = document.getElementById('lang-name');
+    if (flagEl) flagEl.textContent = info.flag;
+    if (nameEl) nameEl.textContent = info.name;
+}
+
+// Initialize language on page load
+function initLanguage() {
+    const currentLang = getCurrentLanguage();
+    applyTranslations(currentLang);
+    updateLangButton(currentLang);
+    
+    // Setup language dropdown listeners
+    document.querySelectorAll('.lang-dropdown a').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = item.dataset.lang;
+            setLanguage(lang);
+        });
+    });
+}
+
+// Auto-initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initLanguage);

@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nearby Hospitals - CityCare Hospital</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nearbyhospital.css">
+  <style>
+    /* ============================================
+   NEARBY HOSPITALS PAGE - SPECIFIC STYLES
+   ============================================ */
+
+/* Page Background */
+.nearbyhospital-page {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* ========== HERO SECTION ========== */
+.hospitals-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  min-height: 450px;
+}
+
+.hospitals-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 700px;
+  height: 700px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite;
+}
+
+.hospitals-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(20px, -20px) rotate(3deg); }
+  66% { transform: translate(-15px, 15px) rotate(-3deg); }
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  animation: fadeInLeft 0.8s ease;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hospitals-hero h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: -1px;
+}
+
+.hospitals-hero p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 40px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-icon {
+  font-size: 36px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.hero-decoration {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+
+.floating-hospital {
+  position: absolute;
+  font-size: 80px;
+  animation: floatHospital 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.hospital-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.hospital-2 {
+  top: 50%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+.hospital-3 {
+  bottom: 20%;
+  left: 40%;
+  animation-delay: 2s;
+}
+
+@keyframes floatHospital {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* ========== MAIN CONTAINER ========== */
+.hospitals-main {
+  max-width: 1400px;
+  margin: -50px auto 40px;
+  padding: 0 50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========== SEARCH SECTION ========== */
+.search-section {
+  background: white;
+  padding: 45px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.search-header h2 {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.search-subtitle {
+  color: #636e72;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-controls {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #667eea;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 18px 20px 18px 55px;
+  border: 2px solid #e8ecff;
+  border-radius: 50px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8f9ff;
+  font-weight: 500;
+  color: #2d3436;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.filter-group {
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.filter-select {
+  min-width: 180px;
+  padding: 18px 20px;
+  border: 2px solid #e8ecff;
+  border-radius: 50px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f8f9ff;
+  font-weight: 600;
+  color: #2d3436;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.filter-btn {
+  padding: 18px 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+/* ========== RESULTS INFO ========== */
+.results-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.results-count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-controls label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #636e72;
+}
+
+.sort-select {
+  padding: 10px 18px;
+  border: 2px solid #e8ecff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3436;
+  background: #f8f9ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+}
+
+/* ========== SPINNER ========== */
+.spinner {
+  display: none;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.spinner.visible {
+  display: block;
+}
+
+.spinner-circle {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #e8ecff;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner p {
+  font-size: 16px;
+  color: #636e72;
+  font-weight: 600;
+}
+
+/* ========== HOSPITALS GRID ========== */
+.hospitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+  animation: fadeIn 1s ease;
+}
+
+/* ========== HOSPITAL CARDS ========== */
+.hospital-card {
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.hospital-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.hospital-card:hover::before {
+  transform: scaleX(1);
+}
+
+.hospital-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hospital-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+}
+
+.card-content {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hospital-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.hospital-type {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+.hospital-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #636e72;
+  font-size: 15px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.location-icon {
+  font-size: 16px;
+  color: #667eea;
+}
+
+.hospital-phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #636e72;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.phone-icon {
+  font-size: 16px;
+  color: #11998e;
+}
+
+.card-footer {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f3ff;
+  margin-top: auto;
+}
+
+.card-btn {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-view {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-view:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-call {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(17, 153, 142, 0.3);
+}
+
+.btn-call:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(17, 153, 142, 0.4);
+}
+
+/* ========== PAGINATION ========== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  animation: fadeIn 1.2s ease;
+}
+
+.pagination button {
+  min-width: 45px;
+  padding: 12px 18px;
+  border: 2px solid #e8ecff;
+  background: white;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2d3436;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+  transform: translateY(-2px);
+}
+
+.pagination button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease;
+}
+
+.empty-icon {
+  font-size: 100px;
+  margin-bottom: 25px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2d3436;
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #636e72;
+  margin-bottom: 30px;
+}
+
+.empty-btn {
+  padding: 16px 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.empty-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== MODAL ========== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* ========== FLOATING PHONE ICON ========== */
+.floating-phone-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  animation: pulse 2s infinite;
+}
+
+.floating-phone-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border-radius: 50%;
+  color: white;
+  font-size: 32px;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+  transition: all 0.3s ease;
+}
+
+.floating-phone-icon a:hover {
+  transform: scale(1.15);
+  box-shadow: 0 12px 35px rgba(17, 153, 142, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ========== TOAST NOTIFICATION ========== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+  font-weight: 700;
+  font-size: 15px;
+  z-index: 10001;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ========== BACK BUTTON ========== */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px auto;
+  padding: 16px 35px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.back-btn:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+  .hospitals-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hospitals-hero {
+    flex-direction: column;
+    padding: 60px 25px;
+    text-align: center;
+  }
+
+  .hospitals-hero h1 {
+    font-size: 40px;
+  }
+
+  .hospitals-hero p {
+    font-size: 16px;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .stat-item {
+    padding: 12px 18px;
+  }
+
+  .hero-decoration {
+    margin-top: 40px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .hospitals-main {
+    padding: 0 25px;
+    margin: -30px auto 30px;
+  }
+
+  .search-section {
+    padding: 30px 25px;
+    border-radius: 20px;
+  }
+
+  .search-controls {
+    flex-direction: column;
+  }
+
+  .search-input-wrapper {
+    min-width: 100%;
+  }
+
+  .filter-group {
+    flex-direction: column;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .results-info {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .hospitals-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .modal-content {
+    padding: 35px 25px;
+    width: 95%;
+  }
+
+  .floating-hospital {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hospitals-hero h1 {
+    font-size: 32px;
+  }
+
+  .stat-number {
+    font-size: 20px;
+  }
+
+  .card-footer {
+    flex-direction: column;
+  }
+
+  .floating-phone-icon {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floating-phone-icon a {
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+  }
+}
+  </style>
+</head>
+<body class="nearbyhospital-page">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h2>🏥 HealthSathi </h2>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="departments.html">Departments</a>
+      <a href="pharmacy.html">Pharmacy</a>
+      <a href="lab.html">Lab</a>
+      <a href="billing.html">Billing</a>
+      <a href="nearbyhospital.html" class="active">Nearby Hospitals</a>
+      <a href="chatbot.html">AI Chatbot</a>
+      <a href="emergency.html" class="emergency-btn">🚨 Emergency</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hospitals-hero">
+    <div class="hero-content">
+      <h1>🏥 Find Nearby Hospitals</h1>
+      <p>Search and locate hospitals near you with real-time information</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-icon">🏥</span>
+          <div>
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Hospitals</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">📍</span>
+          <div>
+            <span class="stat-number">All India</span>
+            <span class="stat-label">Coverage</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">⏱️</span>
+          <div>
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Updated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-decoration">
+      <div class="floating-hospital hospital-1">🏥</div>
+      <div class="floating-hospital hospital-2">🏨</div>
+      <div class="floating-hospital hospital-3">📍</div>
+    </div>
+  </section>
+
+  <main class="hospitals-main">
+    
+    <!-- Search & Filter Section -->
+    <section class="search-section">
+      <div class="search-header">
+        <h2>🔍 Search Hospitals</h2>
+        <p class="search-subtitle">Find the right hospital for your needs</p>
+      </div>
+      
+      <div class="search-controls">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="search" 
+            id="searchInput" 
+            placeholder="Search by hospital name, city, or location..." 
+            class="search-input"
+            aria-label="Search hospitals"
+          >
+        </div>
+        
+        <div class="filter-group">
+          <select id="filterState" class="filter-select" aria-label="Filter by state">
+            <option value="">All States</option>
+          </select>
+          
+          <button class="filter-btn" onclick="applyFilters()">
+            <span class="btn-icon">🔎</span>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Info -->
+    <section class="results-info">
+      <div class="results-count">
+        <span id="resultsCount">Loading...</span>
+      </div>
+      <div class="sort-controls">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect" class="sort-select">
+          <option value="name">Name (A-Z)</option>
+          <option value="city">City</option>
+          <option value="state">State</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Spinner -->
+    <div id="spinner" class="spinner">
+      <div class="spinner-circle"></div>
+      <p>Loading hospitals...</p>
+    </div>
+
+    <!-- Hospital Grid -->
+    <section class="hospitals-grid" id="hospitalList" aria-live="polite" aria-busy="false">
+      <!-- Dynamic hospital cards will be inserted here -->
+    </section>
+
+    <!-- Pagination -->
+    <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <div class="empty-icon">🔍</div>
+      <h3>No Hospitals Found</h3>
+      <p id="emptyMessage">Try adjusting your search or filters</p>
+      <button class="empty-btn" onclick="resetFilters()">Reset Filters</button>
+    </div>
+
+  </main>
+
+  <a href="dashboard.html" class="back-btn">🔙 Back to Dashboard</a>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Emergency">
+      📞
+    </a>
+  </div>
+
+  <!-- Hospital Detail Modal -->
+  <div id="hospitalModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalBody">
+        <!-- Dynamic hospital details will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+  <script>// ============================================
+// NEARBY HOSPITALS PAGE - JAVASCRIPT
+// ============================================
+
+// Configuration
+const DRUPAL_ENDPOINT = "data/hospitals-merged.json"; // Change to your Drupal endpoint
+const ITEMS_PER_PAGE = 6;
+
+// DOM Elements
+const spinner = document.getElementById("spinner");
+const hospitalList = document.getElementById("hospitalList");
+const pagination = document.getElementById("pagination");
+const searchInput = document.getElementById("searchInput");
+const filterState = document.getElementById("filterState");
+const sortSelect = document.getElementById("sortSelect");
+const resultsCount = document.getElementById("resultsCount");
+const emptyState = document.getElementById("emptyState");
+const emptyMessage = document.getElementById("emptyMessage");
+const hospitalModal = document.getElementById("hospitalModal");
+const modalBody = document.getElementById("modalBody");
+const toast = document.getElementById("toast");
+
+// State
+let hospitals = [];
+let filtered = [];
+let currentPage = 1;
+let debounceTimer = null;
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  loadHospitals();
+  bindEventListeners();
+});
+
+// ========== DATA LOADING ==========
+
+async function loadHospitals() {
+  showSpinner();
+  
+  try {
+    const response = await fetch(DRUPAL_ENDPOINT, { cache: "no-cache" });
+    
+    if (!response.ok) {
+      throw new Error("Failed to fetch hospitals");
+    }
+    
+    const json = await response.json();
+    
+    // Normalize: handle different JSON structures
+    let rows = json;
+    if (!Array.isArray(rows)) {
+      if (Array.isArray(json.hospitals)) rows = json.hospitals;
+      else if (Array.isArray(json.data)) rows = json.data;
+      else if (Array.isArray(json.items)) rows = json.items;
+      else {
+        const arr = Object.values(json).find(v => Array.isArray(v));
+        if (arr) rows = arr;
+      }
+    }
+    
+    if (!Array.isArray(rows) || rows.length === 0) {
+      throw new Error("No valid data found");
+    }
+    
+    // Map to normalized format
+    hospitals = rows.map(mapHospital);
+    
+  } catch (error) {
+    console.warn("Failed to load hospitals, using demo data:", error);
+    hospitals = getDemoData();
+  } finally {
+    hideSpinner();
+    filtered = hospitals.slice();
+    buildStateFilter();
+    applyFilters();
+  }
+}
+
+// Map hospital data from various formats
+function mapHospital(item) {
+  const getValue = (keys) => {
+    for (const key of keys) {
+      if (!key) continue;
+      
+      // Direct value
+      if (item[key] !== undefined && item[key] !== null) {
+        const val = item[key];
+        
+        // Handle nested objects
+        if (typeof val === 'object' && val !== null) {
+          if (typeof val.value === 'string') return val.value;
+          if (Array.isArray(val) && val.length) {
+            if (typeof val[0].value === 'string') return val[0].value;
+            if (typeof val[0].name === 'string') return val[0].name;
+          }
+        }
+        
+        return val;
+      }
+    }
+    return null;
+  };
+  
+  // Extract fields
+  const name = getValue(["title", "name", "field_hospital_name", "field_name", "label"]) || "Unnamed Hospital";
+  const city = getValue(["field_city", "city", "field_town", "locality"]) || "";
+  const state = getValue(["field_state", "state", "administrative_area"]) || "";
+  const phone = getValue(["field_phone", "phone", "telephone"]) || "";
+  const address = getValue(["field_address", "address", "location", "field_location"]) || "";
+  let image = getValue(["field_image", "field_photo", "image", "field_picture", "thumbnail"]) || "";
+  
+  // Handle image objects/arrays
+  if (image && typeof image === 'object') {
+    if (image.url) image = image.url;
+    else if (image.uri) image = image.uri;
+    else if (image[0] && image[0].url) image = image[0].url;
+    else image = "";
+  }
+  
+  // Extract image from HTML if needed
+  if (typeof image === 'string' && image.includes('<img')) {
+    const match = image.match(/<img[^>]+src=(?:'|")([^'"]+)(?:'|")[^>]*>/i);
+    if (match) image = match[1];
+  }
+  
+  return {
+    id: item.id || item.nid || Math.random().toString(36).substr(2, 9),
+    name: String(name).trim(),
+    city: String(city).trim(),
+    state: String(state).trim(),
+    phone: String(phone).trim(),
+    address: String(address).trim(),
+    image: image || ""
+  };
+}
+
+// Demo data fallback
+function getDemoData() {
+  return [
+    {
+      id: 1,
+      name: "Apollo Hospitals, Chennai",
+      city: "Chennai",
+      state: "Tamil Nadu",
+      phone: "+91 44 2829 3333",
+      address: "Greams Road, Chennai, Tamil Nadu",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=60"
+    },
+    {
+      id: 2,
+      name: "Fortis Hospitals, Bangalore",
+      city: "Bangalore",
+      state: "Karnataka",
+      phone: "+91 80 2567 0000",
+      address: "Old Airport Road, Bangalore, Karnataka",
+      image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=400&q=60"
+    },
+    {
+      id: 3,
+      name: "Care Hospitals, Hyderabad",
+      city: "Hyderabad",
+      state: "Telangana",
+      phone: "+91 40 2345 6789",
+      address: "HiTec City, Hyderabad, Telangana",
+      image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=400&q=60"
+    },
+    {
+      id: 4,
+      name: "AIIMS, New Delhi",
+      city: "New Delhi",
+      state: "Delhi",
+      phone: "+91 11 2658 8500",
+      address: "Ansari Nagar, New Delhi",
+      image: "https://tse1.mm.bing.net/th/id/OIP.ziQkgax9njF_opvbdB_3DAHaDJ?rs=1&pid=ImgDetMain&o=7&rm=3"
+    },
+    {
+      id: 5,
+      name: "Medanta, Gurugram",
+      city: "Gurugram",
+      state: "Haryana",
+      phone: "+91 124 4141 414",
+      address: "Sector 38, Gurugram, Haryana",
+      image: "https://th.bing.com/th/id/OIP.Zp0nFsgUQv-C04YpN3PdVAHaE7?o=7&rm=3&rs=1&pid=ImgDetMain"
+    },
+    {
+      id: 6,
+      name: "KEM Hospital, Pune",
+      city: "Pune",
+      state: "Maharashtra",
+      phone: "+91 20 2612 0000",
+      address: "Rasta Peth, Pune, Maharashtra",
+      image: "https://www.hindustantimes.com/ht-img/img/2024/04/25/550x309/Mumbai--India---April-17--2020--People-passby-KEM-_1713985142673_1714016860814.jpg"
+    },
+    {
+      id: 7,
+      name: "Manipal Hospital, Bangalore",
+      city: "Bangalore",
+      state: "Karnataka",
+      phone: "+91 80 2222 2222",
+      address: "HAL Airport Road, Bengaluru, Karnataka",
+      image: "https://www.manipalhospitals.com/oldairportroad/uploads/timeline/Timeline_1.jpg"
+    },
+    {
+      id: 8,
+      name: "Ruby Hall Clinic, Pune",
+      city: "Pune",
+      state: "Maharashtra",
+      phone: "+91 20 6606 6000",
+      address: "Grant Road, Pune, Maharashtra",
+      image: "https://i.ytimg.com/vi/Ww3QQzCWfog/maxresdefault.jpg"
+    }
+  ];
+}
+
+// ========== RENDERING ==========
+
+function render() {
+  hospitalList.innerHTML = "";
+  pagination.innerHTML = "";
+  
+  // Update results count
+  resultsCount.textContent = `${filtered.length} hospital${filtered.length !== 1 ? 's' : ''} found`;
+  
+  // Show empty state if no results
+  if (filtered.length === 0) {
+    showEmptyState();
+    return;
+  } else {
+    hideEmptyState();
+  }
+  
+  // Calculate pagination
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  currentPage = Math.min(currentPage, totalPages);
+  
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + ITEMS_PER_PAGE);
+  
+  // Render hospital cards
+  const fragment = document.createDocumentFragment();
+  pageItems.forEach(hospital => {
+    fragment.appendChild(createHospitalCard(hospital));
+  });
+  hospitalList.appendChild(fragment);
+  
+  // Render pagination
+  renderPagination(totalPages);
+}
+
+function createHospitalCard(hospital) {
+  const card = document.createElement("div");
+  card.className = "hospital-card";
+  card.setAttribute("data-id", hospital.id);
+  
+  const imageHTML = hospital.image
+    ? `<img src="${escapeHtml(hospital.image)}" alt="${escapeHtml(hospital.name)}" loading="lazy">`
+    : `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #667eea;">🏥</div>`;
+  
+  const locationText = [hospital.city, hospital.state].filter(Boolean).join(", ") || "Location not available";
+  const phoneText = hospital.phone || "Contact not available";
+  
+  card.innerHTML = `
+    <div class="card-image">
+      ${imageHTML}
+      <span class="card-badge">Available</span>
+    </div>
+    <div class="card-content">
+      <h3 class="hospital-name">${escapeHtml(hospital.name)}</h3>
+      <span class="hospital-type">Multi-Specialty</span>
+      <div class="hospital-location">
+        <span class="location-icon">📍</span>
+        <span>${escapeHtml(locationText)}</span>
+      </div>
+      <div class="hospital-phone">
+        <span class="phone-icon">📞</span>
+        <span>${escapeHtml(phoneText)}</span>
+      </div>
+      <div class="card-footer">
+        <button class="card-btn btn-view" onclick="viewHospital('${hospital.id}')">
+          <span>View Details</span>
+          <span>→</span>
+        </button>
+        <button class="card-btn btn-call" onclick="callHospital('${escapeHtml(hospital.phone)}')">
+          <span>Call</span>
+          <span>📞</span>
+        </button>
+      </div>
+    </div>
+  `;
+  
+  return card;
+}
+
+function renderPagination(totalPages) {
+  if (totalPages <= 1) return;
+  
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement("button");
+    button.textContent = i;
+    
+    if (i === currentPage) {
+      button.classList.add("active");
+    }
+    
+    button.addEventListener("click", () => {
+      currentPage = i;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    
+    pagination.appendChild(button);
+  }
+}
+
+// ========== FILTERS & SEARCH ==========
+
+function buildStateFilter() {
+  const states = Array.from(new Set(hospitals.map(h => h.state).filter(Boolean))).sort();
+  
+  filterState.innerHTML = '<option value="">All States</option>';
+  
+  states.forEach(state => {
+    const option = document.createElement("option");
+    option.value = state;
+    option.textContent = state;
+    filterState.appendChild(option);
+  });
+}
+
+function applyFilters() {
+  const query = (searchInput.value || "").toLowerCase().trim();
+  const state = (filterState.value || "").trim();
+  
+  filtered = hospitals.filter(hospital => {
+    // Search filter
+    const matchesSearch = query === "" || (
+      (hospital.name && hospital.name.toLowerCase().includes(query)) ||
+      (hospital.city && hospital.city.toLowerCase().includes(query)) ||
+      (hospital.address && hospital.address.toLowerCase().includes(query))
+    );
+    
+    // State filter
+    const matchesState = state === "" || hospital.state === state;
+    
+    return matchesSearch && matchesState;
+  });
+  
+  // Apply sorting
+  applySorting();
+  
+  currentPage = 1;
+  render();
+}
+
+function applySorting() {
+  const sortBy = sortSelect.value;
+  
+  filtered.sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'city':
+        return a.city.localeCompare(b.city);
+      case 'state':
+        return a.state.localeCompare(b.state);
+      default:
+        return 0;
+    }
+  });
+}
+
+function resetFilters() {
+  searchInput.value = "";
+  filterState.value = "";
+  sortSelect.value = "name";
+  applyFilters();
+  showToast("Filters reset successfully!");
+}
+
+// ========== ACTIONS ==========
+
+function viewHospital(id) {
+  const hospital = hospitals.find(h => h.id == id);
+  
+  if (!hospital) {
+    showToast("Hospital details not available");
+    return;
+  }
+  
+  const locationText = [hospital.address, hospital.city, hospital.state].filter(Boolean).join(", ");
+  const phoneText = hospital.phone || "Not available";
+  
+  modalBody.innerHTML = `
+    <div style="text-align: center; margin-bottom: 25px;">
+      <div style="width: 100px; height: 100px; margin: 0 auto 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+        🏥
+      </div>
+      <h2 style="font-size: 28px; font-weight: 800; color: #2d3436; margin-bottom: 10px;">${escapeHtml(hospital.name)}</h2>
+      <p style="color: #667eea; font-weight: 600; font-size: 16px;">Multi-Specialty Hospital</p>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 20px; padding: 25px; background: #f8f9ff; border-radius: 20px;">
+      <div>
+        <div style="font-size: 14px; color: #636e72; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">📍 Location</div>
+        <div style="font-size: 16px; color: #2d3436; font-weight: 500; line-height: 1.6;">${escapeHtml(locationText)}</div>
+      </div>
+      
+      <div>
+        <div style="font-size: 14px; color: #636e72; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">📞 Phone</div>
+        <div style="font-size: 16px; color: #2d3436; font-weight: 500;">${escapeHtml(phoneText)}</div>
+      </div>
+      
+      <div>
+        <div style="font-size: 14px; color: #636e72; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🏙️ City / State</div>
+        <div style="font-size: 16px; color: #2d3436; font-weight: 500;">${escapeHtml(hospital.city)}${hospital.city && hospital.state ? ', ' : ''}${escapeHtml(hospital.state)}</div>
+      </div>
+    </div>
+    
+    <div style="display: flex; gap: 15px; margin-top: 30px;">
+      <button onclick="openGoogleMaps('${escapeHtml(hospital.name)}', '${escapeHtml(locationText)}')" style="flex: 1; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);">
+        🗺️ View on Map
+      </button>
+      <button onclick="callHospital('${escapeHtml(hospital.phone)}')" style="flex: 1; padding: 16px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; border-radius: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(17, 153, 142, 0.3);">
+        📞 Call Now
+      </button>
+    </div>
+  `;
+  
+  hospitalModal.classList.add("show");
+}
+
+function callHospital(phone) {
+  if (!phone || phone === "Not available" || phone === "Contact not available") {
+    showToast("Phone number not available");
+    return;
+  }
+  
+  window.location.href = `tel:${phone}`;
+}
+
+function openGoogleMaps(name, location) {
+  const query = encodeURIComponent(`${name} ${location}`);
+  window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, "_blank");
+}
+
+function closeModal() {
+  hospitalModal.classList.remove("show");
+}
+
+// ========== UTILITIES ==========
+
+function showSpinner() {
+  spinner.classList.add("visible");
+  hospitalList.setAttribute("aria-busy", "true");
+}
+
+function hideSpinner() {
+  spinner.classList.remove("visible");
+  hospitalList.setAttribute("aria-busy", "false");
+}
+
+function showEmptyState() {
+  emptyState.style.display = "block";
+  
+  if (searchInput.value || filterState.value) {
+    emptyMessage.textContent = "No hospitals match your search criteria";
+  } else {
+    emptyMessage.textContent = "No hospitals available";
+  }
+}
+
+function hideEmptyState() {
+  emptyState.style.display = "none";
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+function escapeHtml(text) {
+  if (!text) return "";
+  
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ========== EVENT LISTENERS ==========
+
+function bindEventListeners() {
+  // Search with debounce
+  searchInput.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(applyFilters, 300);
+  });
+  
+  // State filter
+  filterState.addEventListener("change", applyFilters);
+  
+  // Sort
+  sortSelect.addEventListener("change", () => {
+    applySorting();
+    render();
+  });
+  
+  // Close modal on outside click
+  hospitalModal.addEventListener("click", (e) => {
+    if (e.target === hospitalModal) {
+      closeModal();
+    }
+  });
+  
+  // Escape key to close modal
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && hospitalModal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+}</script>
+
+  <script src="js/nearbyhospital.js"></script>
+  <script src="js/language-config.js"></script>
+  <script>
+    // Listen for language changes and re-run page-specific renderers
+    window.addEventListener('languageChanged', (e) => {
+      const lang = (e && e.detail && e.detail.lang) ? e.detail.lang : (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : null);
+      try {
+        if (typeof applyTranslations === 'function' && lang) applyTranslations(lang);
+        if (typeof buildStateFilter === 'function') buildStateFilter();
+        if (typeof render === 'function') render();
+      } catch (err) {
+        console.warn('languageChanged handler error', err);
+      }
+    });
+
+    // Ensure dynamic parts are translated when the page first loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        try { if (typeof applyTranslations === 'function') applyTranslations(getCurrentLanguage()); } catch (e) {}
+      });
+    } else {
+      try { if (typeof applyTranslations === 'function') applyTranslations(getCurrentLanguage()); } catch (e) {}
+    }
+  </script>
+</body>
+</html>

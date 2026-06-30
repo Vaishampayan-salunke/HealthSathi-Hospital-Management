@@ -1,0 +1,23 @@
+# Virtual environments
+.venv/
+venv/
+
+# Editor settings
+.vscode/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+.env.*
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tempCodeRunnerFile*
+*.tmp

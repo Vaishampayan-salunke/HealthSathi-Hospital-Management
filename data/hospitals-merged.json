@@ -1,0 +1,253 @@
+{
+  "version": "1.0",
+  "merged_at": "2025-11-22",
+  "total": 19,
+  "hospitals": [
+    {
+      "nid": "116",
+      "uuid": "uuid-116",
+      "title": "AIIMS Delhi",
+      "field_city": "New Delhi",
+      "field_state": "Delhi",
+      "field_address": {
+        "value": "Ansari Nagar, New Delhi - 110029"
+      },
+      "field_phone": "+91-11-26588500",
+      "field_image_uri": "public://images/aiims_delhi.jpg"
+    },
+    {
+      "nid": "104",
+      "uuid": "uuid-104",
+      "title": "AIIMS New Delhi",
+      "field_city": {
+        "value": "New Delhi"
+      },
+      "field_state": {
+        "value": "Delhi"
+      },
+      "field_address": {
+        "value": "Ansari Nagar, New Delhi - 110029"
+      },
+      "field_phone": "+91-11-26588500",
+      "field_image_uri": "public://images/aiims_delhi.jpg"
+    },
+    {
+      "nid": "101",
+      "uuid": "uuid-101",
+      "title": "Apollo Hospitals Chennai",
+      "field_city": "Chennai",
+      "field_state": "Tamil Nadu",
+      "field_address": {
+        "value": "21, Greams Road, Chennai - 600006"
+      },
+      "field_phone": "+91-44-28293333",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1580281657525-3cc8d2f21f68?auto=format&fit=crop&w=800&q=60",
+        "alt": "Apollo Hospitals Chennai facade"
+      }
+    },
+    {
+      "nid": "103",
+      "uuid": "uuid-103",
+      "title": "Care Hospitals Hyderabad",
+      "field_city": "Hyderabad",
+      "field_state": "Telangana",
+      "field_address": {
+        "value": "Hitech City, Hyderabad - 500081"
+      },
+      "field_phone": {
+        "value": "+91-40-23456789"
+      },
+      "field_photo": "<img src=\"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=60\" alt=\"Care Hospitals\" />"
+    },
+    {
+      "nid": "102",
+      "uuid": "uuid-102",
+      "title": "Fortis Hospital Bangalore",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "address": "Old Airport Road, Bangalore - 560008",
+      "phone": "+91-80-25670000",
+      "image": "https://images.unsplash.com/photo-1581091012184-7b5a5b0d1a5d?auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "nid": "115",
+      "uuid": "uuid-115",
+      "title": "Fortis Memorial Research Institute",
+      "city": "Gurgaon",
+      "state": "Haryana",
+      "address": "Sector 44, Gurgaon",
+      "phone": "+91-124-4511000",
+      "image": null
+    },
+    {
+      "id": "212",
+      "title": "Fortis Memorial Research Institute Gurgaon",
+      "field_city": "Gurgaon",
+      "field_state": "Haryana",
+      "field_address": {
+        "value": "Sector 44, Gurgaon"
+      },
+      "field_phone": "+91-124-4511000",
+      "field_image": null
+    },
+    {
+      "nid": "110",
+      "uuid": "uuid-110",
+      "title": "Gandhi Medical College Hospital",
+      "city": "Secunderabad",
+      "state": "Telangana",
+      "address": "Secunderabad, Telangana",
+      "phone": "+91-40-98765432",
+      "image": null
+    },
+    {
+      "nid": "106",
+      "uuid": "uuid-106",
+      "title": "KEM Hospital Pune",
+      "field_city": "Pune",
+      "field_state": "Maharashtra",
+      "field_address": {
+        "value": "Pune - 411001"
+      },
+      "field_phone": "+91-20-26120000",
+      "image": ""
+    },
+    {
+      "nid": "114",
+      "uuid": "uuid-114",
+      "title": "Kokilaben Dhirubhai Ambani Hospital",
+      "name": "Kokilaben Dhirubhai Ambani Hospital",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "address": "Andheri West, Mumbai",
+      "phone": "+91-22-30905555",
+      "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "id": "211",
+      "title": "Kokilaben Dhirubhai Ambani Hospital Mumbai",
+      "field_city": "Mumbai",
+      "field_state": "Maharashtra",
+      "field_address": {
+        "value": "Andheri West, Mumbai"
+      },
+      "field_phone": "+91-22-30905555",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=60",
+        "alt": "Kokilaben Dhirubhai Ambani Hospital Mumbai"
+      }
+    },
+    {
+      "nid": "107",
+      "uuid": "uuid-107",
+      "title": "Manipal Hospitals Bangalore",
+      "field_hospital_name": "Manipal Hospitals",
+      "field_city": "Bangalore",
+      "field_state": "Karnataka",
+      "field_address": {
+        "value": "Old Airport Road"
+      },
+      "field_contact": {
+        "value": "+91-80-22222222"
+      },
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1606756791745-1a6f2c9a6d0b?auto=format&fit=crop&w=800&q=60"
+      }
+    },
+    {
+      "nid": "105",
+      "uuid": "uuid-105",
+      "title": "Medanta The Medicity",
+      "name": "Medanta",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "address": "Sector 38, Gurugram - 122001",
+      "phone": "+91-124-4141414",
+      "thumbnail": {
+        "url": "https://images.unsplash.com/photo-1582719478250-0c0f7b8a0a7b?auto=format&fit=crop&w=800&q=60"
+      }
+    },
+    {
+      "id": "215",
+      "title": "Medanta The Medicity Gurugram",
+      "field_city": "Gurugram",
+      "field_state": "Haryana",
+      "field_address": {
+        "value": "Sector 38, Gurugram"
+      },
+      "field_phone": "+91-124-4141414",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1582719478250-0c0f7b8a0a7b?auto=format&fit=crop&w=800&q=60",
+        "alt": "Medanta The Medicity Gurugram"
+      }
+    },
+    {
+      "nid": "112",
+      "uuid": "uuid-112",
+      "title": "Narayana Health Bangalore",
+      "field_city": "Bangalore",
+      "field_state": "Karnataka",
+      "field_address": {
+        "value": "Bommasandra Industrial Area, Bangalore"
+      },
+      "field_phone": "+91-80-12345678",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1606756791745-1a6f2c9a6d0b?auto=format&fit=crop&w=800&q=60"
+      }
+    },
+    {
+      "nid": "108",
+      "uuid": "uuid-108",
+      "title": "Ruby Hall Clinic Pune",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "address": "Koregaon Park, Pune",
+      "phone": "+91-20-66066000",
+      "field_image": {
+        "rendered": "<img src=\"https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60\"/>"
+      }
+    },
+    {
+      "nid": "113",
+      "uuid": "uuid-113",
+      "title": "Sankara Nethralaya Chennai",
+      "field_city": "Chennai",
+      "field_state": "Tamil Nadu",
+      "field_address": {
+        "value": "Padi, Chennai"
+      },
+      "field_phone": "+91-44-12345678",
+      "field_image_markup": "<img src=\"https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60\" alt=\"Sankara Nethralaya\"/>"
+    },
+    {
+      "nid": "109",
+      "uuid": "uuid-109",
+      "title": "Sri Ramachandra Medical Centre",
+      "field_city": "Chennai",
+      "field_state": "Tamil Nadu",
+      "field_address": {
+        "value": "Porur, Chennai"
+      },
+      "field_phone": "+91-44-12345678",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1582719478250-0c0f7b8a0a7c?auto=format&fit=crop&w=800&q=60",
+        "alt": "SRMC Chennai"
+      }
+    },
+    {
+      "nid": "111",
+      "uuid": "uuid-111",
+      "title": "St. John's Medical College",
+      "field_city": "Bengaluru",
+      "field_state": "Karnataka",
+      "field_address": {
+        "value": "Bangalore - 560034"
+      },
+      "field_phone": "+91-80-12341234",
+      "field_image": {
+        "url": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=60"
+      }
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Health Sathi – PIA System</title>
+  <style>
+    :root{
+      --primary:#667eea; --secondary:#764ba2; --success:#2ed573; --danger:#e43f5a; --light:#f8f9fa;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      height:98vh; display:flex; align-items:center; justify-content:center; padding:12px;
+    }
+    .container{
+      width:100%; max-width:520px; height:95vh; background:#fff; border-radius:16px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.25); display:flex; flex-direction:column; overflow:hidden;
+    }
+    .header{
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff; padding:18px; font-weight:700; text-align:center; font-size:1.15rem;
+    }
+    .chat-box{
+      flex:1; background:var(--light); padding:18px; overflow-y:auto; display:flex; flex-direction:column; gap:14px;
+    }
+    .message{ max-width:80%; padding:12px 14px; border-radius:14px; line-height:1.4; font-size:14.5px; word-wrap:break-word; white-space:pre-wrap;}
+    .bot{ background:#e8f1ff; align-self:flex-start; color:#111 }
+    .user{ background:var(--primary); color:#fff; align-self:flex-end; }
+    .warning{ background:var(--danger) !important; color:#fff; font-weight:700; }
+    .quick-replies{ padding:14px; background:#fff; border-top:1px solid #eee; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+    .qr-btn{ padding:10px 16px; border-radius:22px; border:2px solid var(--primary); background:#fff; color:var(--primary); cursor:pointer; font-weight:600; }
+    .qr-btn:hover{ background:var(--primary); color:#fff; transform:translateY(-3px); }
+    .input-area{ display:flex; gap:8px; padding:12px; background:#fff; border-top:1px solid #eee; align-items:center; }
+    #userInput{ flex:1; padding:12px 14px; border-radius:20px; border:1px solid #ddd; outline:none; font-size:14px; }
+    .icon-btn{ width:44px; height:44px; border-radius:50%; border:none; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; }
+    #voiceBtn{ background:#f1f3f6; color:var(--primary); }
+    #readBtn{ background:var(--success); color:#fff; }
+    #sendBtn{ background:var(--primary); color:#fff; border:none; padding:0 14px; border-radius:10px; height:44px; cursor:pointer; font-size:16px; }
+    .meta{ font-size:12px; color:#666; margin-top:6px; }
+  </style>
+</head>
+<body>
+  <div class="container" role="application" aria-label="Health Sathi chat">
+
+    <div class="header">🏥 Welcome to HealthSathi AI Assistance</div>
+
+    <div id="chatBox" class="chat-box" aria-live="polite"></div>
+
+    <div id="quickReplies" class="quick-replies" aria-hidden="false"></div>
+
+    <div class="input-area">
+      <button id="voiceBtn" class="icon-btn" title="Start voice input">🎤</button>
+      <input id="userInput" placeholder="Type your message..." aria-label="Chat input" />
+      <button id="sendBtn">➤</button>
+      <button id="readBtn" class="icon-btn" title="Read last reply">🔊</button>
+    </div>
+  </div>
+
+  <!-- Floating Phone Icon -->
+  <div class="floating-phone-icon">
+    <a href="tel:+919876543210" title="Call Hospital">
+      📞
+    </a>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .floating-phone-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    .floating-phone-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+    .floating-phone-icon a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* ========== BACK BUTTON ========== */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 35px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      position: fixed;
+      bottom: 12px;
+      left: 10%;
+      transform: translateX(-50%);
+      z-index: 999;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-50%) translateY(-3px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+  </style>
+
+  <a href="dashboard.html" class="back-btn">🔙 Back to Dashboard</a>
+
+  <script>
+    /* ===========================
+       State & DOM
+       =========================== */
+    const chatBox = document.getElementById('chatBox');
+    const quickReplies = document.getElementById('quickReplies');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const voiceBtn = document.getElementById('voiceBtn');
+    const readBtn = document.getElementById('readBtn');
+
+    let lastBotText = '';
+    let state = { stage:'language', lang:null, symptom:null, duration:null };
+
+    /* ===========================
+       Multilingual text & lists
+       =========================== */
+     const text = {
+      en: {
+        selectLang: "🌍 Please select your language",
+        welcome: "Welcome to Health Sathi, AI System\nHow can I help you today?",
+        mainMenu: ["🔍 Check Symptoms","📅 Book Appointment","🚨 Emergency Help"],
+        selectSymptom: "Which symptom are you experiencing?",
+        selectDuration: "How long have you had this symptom?",
+        durations: ["1-3 days","3-7 days","1-2 weeks","More than 2 weeks"],
+        appointment: "📅 To book an appointment: visit nearest PHC or call 104/108",
+        emergency: "🚨 EMERGENCY: Call 108 immediately for chest pain, heavy bleeding, unconsciousness or severe breathing difficulty!",
+        symptomError: "Please select a symptom from the list.",
+        diagnosis: "Possible Diagnosis: ",
+        homeRemedies: "Home Remedies:",
+        medicines: "Recommended Medicines:",
+        thankYou: "Thank you for using Health Sathi",
+        helpMore: "How else can I help you?"
+      },
+      hi: {
+        selectLang: "🌍 कृपया अपनी भाषा चुनें",
+        welcome: "Health Sathi में आपका स्वागत है, AI System\nमैं आपकी कैसे मदद कर सकता हूँ?",
+        mainMenu: ["🔍 लक्षण जांचें","📅 अपॉइंटमेंट","🚨 आपातकालीन मदद"],
+        selectSymptom: "आपको कौन सा लक्षण हो रहा है?",
+        selectDuration: "यह लक्षण आपको कितने दिनों से है?",
+        durations: ["1-3 दिन","3-7 दिन","1-2 सप्ताह","2 सप्ताह से अधिक"],
+        appointment: "📅 अपॉइंटमेंट के लिए: नजदीकी PHC पर जाएँ या 104/108 पर कॉल करें",
+        emergency: "🚨 आपातकाल: सीने में दर्द, ज़्यादा रक्तस्राव, बेहोशी या साँस लेने में गंभीर समस्या होने पर तुरंत 108 पर कॉल करें!",
+        symptomError: "कृपया सूची से एक लक्षण चुनें।",
+        diagnosis: "संभावित निदान: ",
+        homeRemedies: "घरेलू उपाय:",
+        medicines: "अनुशंसित दवाएं:",
+        thankYou: "Health Sathi का उपयोग करने के लिए धन्यवाद",
+        helpMore: "मैं आपकी और कैसे मदद कर सकता हूँ?"
+      },
+      kn: {
+        selectLang: "🌍 ದಯವಿಟ್ಟು ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        welcome: "Health Sathi ಗೆ ಸುಸ್ವಾಗತ, AI System\nನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
+        mainMenu: ["🔍 ಲಕ್ಷಣ ಪರಿಶೀಲನೆ","📅 ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್","🚨 ತುರ್ತು ಸಹಾಯ"],
+        selectSymptom: "ನಿಮಗೆ ಯಾವ ಲಕ್ಷಣ ಇದೆ?",
+        selectDuration: "ಈ ಲಕ್ಷಣ ಎಷ್ಟು ದಿನಗಳಿಂದ ಇದೆ?",
+        durations: ["1-3 ದಿನ","3-7 ದಿನ","1-2 ವಾರ","2 ವಾರಕ್ಕಿಂತ ಹೆಚ್ಚು"],
+        appointment: "📅 ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್: ಹತ್ತಿರದ PHC ಗೆ ಭೇಟಿ ನೀಡಿ ಅಥವಾ 104/108 ಗೆ ಕರೆ ಮಾಡಿ",
+        emergency: "🚨 ತುರ್ತು: ಎದೆ ನೋವು, ತೀವ್ರ ರಕ್ತಸ್ರಾವ, ಬೇಹೋಶತೆ ಅಥವಾ ಉಸಿರಾಟ ತೊಂದರೆ ಇದ್ದರೆ ತಕ್ಷಣ 108 ಗೆ ಕರೆ ಮಾಡಿ!",
+        symptomError: "ದಯವಿಟ್ಟು ಪಟ್ಟಿಯಿಂದ ಲಕ್ಷಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ.",
+        diagnosis: "ಸಂಭವನೀಯ ರೋಗನಿರ್ಣಯ: ",
+        homeRemedies: "ಮನೆಯ ಪರಿಹಾರಗಳು:",
+        medicines: "ಸೂಚಿಸಿದ ಔಷಧಿಗಳು:",
+        thankYou: "Health Sathi ಅನ್ನು ಬಳಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು",
+        helpMore: "ನಾನು ಇನ್ನೂ ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?"
+      }
+    };
+
+    // Symptoms lists per language
+    const symptomsByLang = {
+      en: ["Fever","Headache","Cough","Cold & Runny Nose","Stomach Pain","Vomiting","Body Pain","Breathing Difficulty","Diarrhea","Joint Pain","Sore Throat","Fatigue"],
+      hi: ["बुखार","सिरदर्द","खाँसी","जुखाम (नाक बहना)","पेट दर्द","उल्टी","शारीरिक दर्द","साँस लेने में तकलीफ","दस्त","जोड़ों में दर्द","गले में खराश","थकान"],
+      kn: ["ಜ್ವರ","ತಲೆನೋವು","ಕೆಮ್ಮು","ಶೀತ/ನಾಸ್ ಹರಿವು","ಹೊಟ್ಟು ನೋವು","ಔಗುಳಿಸುವಿಕೆ","ದೇಹದ ನೋವು","ಉಸಿರಾಟದ ತೊಂದರೆ","ಅತಿಸಾರ","ಕೀಲು ನೋವು","ಗಂಟಲು ನೋವು","ಆಯಾಸ"]
+    };
+
+    const symptomToKey = {
+      en: {
+        "Fever":"Fever","Headache":"Headache","Cough":"Cough","Cold & Runny Nose":"Cold",
+        "Stomach Pain":"Stomach Pain","Vomiting":"Vomiting","Body Pain":"Body Pain","Breathing Difficulty":"Breathing Difficulty",
+        "Diarrhea":"Diarrhea","Joint Pain":"Joint Pain","Sore Throat":"Sore Throat","Fatigue":"Fatigue"
+      },
+      hi: {
+        "बुखार":"Fever","सिरदर्द":"Headache","खाँसी":"Cough","जुखाम (नाक बहना)":"Cold",
+        "पेट दर्द":"Stomach Pain","उल्टी":"Vomiting","शारीरिक दर्द":"Body Pain","साँस लेने में तकलीफ":"Breathing Difficulty",
+        "दस्त":"Diarrhea","जोड़ों में दर्द":"Joint Pain","गले में खराश":"Sore Throat","थकान":"Fatigue"
+      },
+      kn: {
+        "ಜ್ವರ":"Fever","ತಲೆನೋವು":"Headache","ಕೆಮ್ಮು":"Cough","ಶೀತ/ನಾಸ್ ಹರಿವು":"Cold",
+        "ಹೊಟ್ಟು ನೋವು":"Stomach Pain","ಔಗುಳಿಸುವಿಕೆ":"Vomiting","ದೇಹದ ನೋವು":"Body Pain","ಉಸಿರಾಟದ ತೊಂದರೆ":"Breathing Difficulty",
+        "ಅತಿಸಾರ":"Diarrhea","ಕೀಲು ನೋವು":"Joint Pain","ಗಂಟಲು ನೋವು":"Sore Throat","ಆಯಾಸ":"Fatigue"
+      }
+    };
+
+    const database = {
+      "Fever": {
+        "1-3 days": { 
+          en: { diagnosis:"Likely viral fever", home:["Drink ORS","Rest","Sponge bath"], medicines:["Paracetamol 650mg every 6 hours"], serious:"If fever > 103°F or lasts > 3 days" },
+          hi: { diagnosis:"संभावित वायरल बुखार", home:["ORS पिएं","आराम करें","स्पंज बाथ लें"], medicines:["पैरासिटामोल 650mg हर 6 घंटे"], serious:"यदि बुखार > 103°F या 3 दिन से अधिक" },
+          kn: { diagnosis:"ಸಂಭವನೀಯ ವೈರಲ್ ಜ್ವರ", home:["ORS ಕುಡಿಯಿರಿ","ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ","ಸ್ಪಾಂಜ್ ಸ್ನಾನ ಮಾಡಿ"], medicines:["ಪ್ಯಾರಾಸಿಟಮೋಲ್ 650mg ಪ್ರತಿ 6 ಗಂಟೆಗೆ"], serious:"ಜ್ವರ > 103°F ಅಥವಾ 3 ದಿನಕ್ಕಿಂತ ಹೆಚ್ಚು" }
+        },
+        "3-7 days": { 
+          en: { diagnosis:"Possible dengue/typhoid", home:["Rest","Hydration"], medicines:["Consult doctor"], serious:"Go to hospital for blood test" },
+          hi: { diagnosis:"संभावित डेंगू/टाइफॉइड", home:["आराम करें","तरल पदार्थ लें"], medicines:["डॉक्टर से परामर्श करें"], serious:"रक्त परीक्षण के लिए अस्पताल जाएं" },
+          kn: { diagnosis:"ಸಂಭವನೀಯ ಡೆಂಗ್ಯೂ/ಟೈಫಾಯಿಡ್", home:["ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ","ದ್ರವ ತೆಗೆದುಕೊಳ್ಳಿ"], medicines:["ವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ"], serious:"ರಕ್ತ ಪರೀಕ್ಷೆಗಾಗಿ ಆಸ್ಪತ್ರೆಗೆ ಹೋಗಿ" }
+        },
+        "any": { 
+          en: { diagnosis:"Prolonged fever", serious:"Hospital visit recommended" },
+          hi: { diagnosis:"दीर्घकालीन बुखार", serious:"अस्पताल यात्रा की सिफारिश की जाती है" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲೀನ ಬುಖಾರ", serious:"ಅಸ್ಪತ್ರೆ ಭೇಟಿ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ" }
+        }
+      },
+      "Headache": {
+        "1-3 days": {
+          en: { diagnosis:"Tension or migraine headache", home:["Rest in dark room","Stay hydrated","Apply warm compress"], medicines:["Ibuprofen 400mg every 6 hours","Aspirin 500mg"], serious:"If accompanied by fever or vision changes" },
+          hi: { diagnosis:"तनाव या माइग्रेन सिरदर्द", home:["अंधेरे कमरे में आराम करें","हाइड्रेटेड रहें","गर्म सेक लगाएं"], medicines:["इबुप्रोफेन 400mg हर 6 घंटे","एस्पिरिन 500mg"], serious:"यदि बुखार या दृष्टि परिवर्तन के साथ हो" },
+          kn: { diagnosis:"ಒತ್ತಡ ಅಥವಾ ಮೈಗ್ರೇನ್ ತಲೆನೋವು", home:["ಅಂಧಾರ ಕೊಠಡಿಯಲ್ಲಿ ವಿಶ್ರಾಂತಿ","ನೆಲೆದುಕೊಳ್ಳಿ","ಬೆಚ್ಚಗಿನ ಸೇಕ ಅನ್ವಯಿಸಿ"], medicines:["ಇಬುಪ್ರೋಫೆನ್ 400mg ಪ್ರತಿ 6 ಗಂಟೆ","ಆಸ್ಪಿರಿನ್ 500mg"], serious:"ಬುಖಾರ ಅಥವಾ ದೃಷ್ಟಿ ಬದಲಾವಣೆ ಇದ್ದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic headache", home:["Regular sleep","Reduce stress","Limit screen time"], medicines:["Paracetamol 650mg as needed"], serious:"Consult neurologist if persistent" },
+          hi: { diagnosis:"क्रोनिक सिरदर्द", home:["नियमित नींद","तनाव कम करें","स्क्रीन समय सीमित करें"], medicines:["आवश्यकतानुसार पैरासिटामोल 650mg"], serious:"यदि लगातार हो तो न्यूरोलॉजिस्ट से परामर्श लें" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ತಲೆನೋವು", home:["ನಿಯಮಿತ ನಿದ್ರೆ","ಒತ್ತಡ ಕಡಿಮೆ ಮಾಡಿ","ಪರದೆಯ ಸಮಯ ಸೀಮಿತ ಮಾಡಿ"], medicines:["ಅಗತ್ಯವಿರುವಂತೆ ಪ್ಯಾರಾಸಿಟಮೋಲ್ 650mg"], serious:"ನಿರಂತರವಾಗಿದ್ದರೆ ನ್ಯೂರೋಲಾಜಿಸ್ಟರನ್ನು ಸಂಪರ್ಕಿಸಿ" }
+        }
+      },
+      "Cough": {
+        "1-3 days": {
+          en: { diagnosis:"Dry or viral cough", home:["Honey and ginger tea","Stay warm","Humidify room"], medicines:["Cough syrup with dextromethorphan","Lozenges"], serious:"If cough brings up blood" },
+          hi: { diagnosis:"सूखी या वायरल खाँसी", home:["शहद और अदरक की चाय","गर्म रहें","कमरा नमीयुक्त करें"], medicines:["डेक्सट्रोमेथॉर्फन के साथ खांसी की दवा","लोजेंज"], serious:"अगर खांसी में खून आए" },
+          kn: { diagnosis:"ಒಣ ಅಥವಾ ವೈರಲ್ ಕೆಮ್ಮು", home:["ಜೇನು ಮತ್ತು ಮೆಣಿನೆ ಚಾಯ","ಬೆಚ್ಚಗಿರಿ","ಕೋಣೆ ತೇವಗೊಳಿಸಿ"], medicines:["ಡೆಕ್ಸ್ಟ್ರೋಮೆಥಾರ್ಫನ್ ಇರುವ ಕೆಮ್ಮಿನ ಸಿರಪ್","ಲೋಜೆಂಜ್"], serious:"ಕೆಮ್ಮಿನೊಂದಿಗೆ ರಕ್ತ ಹೊರಬಿದ್ದರೆ" }
+        },
+        "3-7 days": {
+          en: { diagnosis:"Possible bronchitis", home:["Steam inhalation","Rest","Warm fluids"], medicines:["Ambroxol 30mg twice daily","Antibiotic if bacterial"], serious:"Go to doctor for chest X-ray" },
+          hi: { diagnosis:"संभावित ब्रोंकाइटिस", home:["भाप की साँस लें","आराम करें","गर्म तरल पदार्थ"], medicines:["एम्ब्रोक्सोल 30mg दिन में दो बार","बैक्टीरियल होने पर एंटीबायोटिक"], serious:"छाती के एक्स-रे के लिए डॉक्टर के पास जाएं" },
+          kn: { diagnosis:"ಸಂಭವನೀಯ ಶ್ವಾಸನಾಳದ ಉರ್ಜ್ಜನ", home:["ಆವಿ ಶ್ವಾಸಿಸಿ","ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ","ಬೆಚ್ಚಗಿನ ದ್ರವ"], medicines:["ಅಮ್ಬ್ರೋಕ್ಸೋಲ್ 30mg ದಿನಕ್ಕೆ ಎರಡು ಬಾರಿ","ಬ್ಯಾಕ್ಟೀರಿಯಾದಿಂದ ಬಂದರೆ ಪ್ರತಿಜೀವಕ"], serious:"ಎದೆಯ ಎಕ್ಸ-ರೇಗಾಗಿ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡಿ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic cough", serious:"Consult pulmonologist" },
+          hi: { diagnosis:"क्रोनिक खांसी", serious:"पल्मोनोलॉजिस्ट से परामर्श लें" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಕೆಮ್ಮು", serious:"ಫೇಫ್ಡೆ ರೋಗ ವಿಶೇಷಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ" }
+        }
+      },
+      "Cold": {
+        "1-3 days": {
+          en: { diagnosis:"Common cold", home:["Gargle with salt water","Drink warm fluids","Use saline nasal drops"], medicines:["Cetirizine 10mg daily","Phenylephrine nasal spray"], serious:"If symptoms worsen after 5 days" },
+          hi: { diagnosis:"सामान्य सर्दी", home:["नमक के पानी से गरारे करें","गर्म तरल पदार्थ पिएं","खारे नाक की बूंदें लगाएं"], medicines:["सेटिरिज़िन 10mg रोज़ाना","फेनिलेफ्रिन नाक स्प्रे"], serious:"यदि 5 दिन बाद लक्षण बिगड़ें" },
+          kn: { diagnosis:"ಸಾಮಾನ್ಯ ಶೀತ", home:["ಉಪ್ಪಿನ ನೀರಿನಿಂದ ಗಾರ್ಗಲ್ ಮಾಡಿ","ಬೆಚ್ಚಗಿನ ದ್ರವ ಪಿಯಿರಿ","ಖಾರೆ ಮೂಗಿನ ಹನಿ ಬಳಸಿ"], medicines:["ಸೆಟಿರಿಜಿನ್ 10mg ದೈನಿಕ","ಫೆನಿಲೆಫ್ರಿನ್ ನಾಸಲ್ ಸ್ಪ್ರೇ"], serious:"5 ದಿನ ನಂತರ ರೋಗಲಕ್ಷಣಗಳು ಹದಗೆಡುತ್ತರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Persistent cold", medicines:["Continue cetirizine","Vitamin C supplements"] },
+          hi: { diagnosis:"लगातार सर्दी", medicines:["सेटिरिज़िन जारी रखें","विटामिन सी सप्लीमेंट"] },
+          kn: { diagnosis:"ನಿರಂತರ ಶೀತ", medicines:["ಸೆಟಿರಿಜಿನ್ ಮುಂದುವರಿಸಿ","ವಿಟಮಿನ್ C ಪೂರಕ"] }
+        }
+      },
+      "Stomach Pain": {
+        "1-3 days": {
+          en: { diagnosis:"Indigestion or gastritis", home:["Light meals","Avoid spicy food","Rest","Drink water"], medicines:["Antacid tablet after meals","Omeprazole 20mg daily"], serious:"If pain is severe or vomiting continues" },
+          hi: { diagnosis:"अपच या गैस्ट्राइटिस", home:["हल्का खाना","मसालेदार भोजन से बचें","आराम करें","पानी पिएं"], medicines:["भोजन के बाद एंटासिड टैबलेट","ओमेप्रेजोल 20mg रोज़ाना"], serious:"यदि दर्द तीव्र हो या उल्टी जारी रहे" },
+          kn: { diagnosis:"ಹಜಮ ಕ್ರಿಯೆಯ ಸಮಸ್ಯೆ ಅಥವಾ ಗ್ಯಾಸ್ಟ್ರಿಟಿಸ್", home:["ಹಗುರ ಆಹಾರ","ಕಠಿಣ ಆಹಾರ ತಪ್ಪಿಸಿ","ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ","ನೀರು ಕುಡಿಯಿರಿ"], medicines:["ಭೋಜನದ ನಂತರ ಆಮ್ಲಕ ನಿರಸನ ಟ್ಯಾಬ್ಲೆಟ್","ಓಮೆಪ್ರೋಜೋಲ್ 20mg ದೈನಿಕ"], serious:"ವೇದನೆ ತೀವ್ರವಾಗಿದ್ದರೆ ಅಥವಾ ಚೀಲುವಿಕೆ ಮುಂದುವರಿದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic stomach pain", medicines:["Antispasmodic","Dietary changes"] },
+          hi: { diagnosis:"क्रोनिक पेट दर्द", medicines:["एंटीस्पास्मोडिक","आहार परिवर्तन"] },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಹೊಟ್ಟೆ ನೋವು", medicines:["ಅಂಟಿಸ್ಪಾಸ್ಮೋಡಿಕ್","ಆಹಾರ ಬದಲಾವಣೆ"] }
+        }
+      },
+      "Body Pain": {
+        "1-3 days": {
+          en: { diagnosis:"Muscle strain or fatigue", home:["Rest affected area","Heat therapy","Light stretching"], medicines:["Ibuprofen 400mg","Paracetamol 650mg"], serious:"If pain is severe or swelling occurs" },
+          hi: { diagnosis:"पेशी की खिंचाव या थकान", home:["प्रभावित क्षेत्र को आराम दें","ताप चिकित्सा","हल्का स्ट्रेचिंग"], medicines:["इबुप्रोफेन 400mg","पैरासिटामोल 650mg"], serious:"यदि दर्द तीव्र हो या सूजन हो" },
+          kn: { diagnosis:"ಸ್ನಾಯು ಖಿಂಚನ ಅಥವಾ ಆಯಾಸ", home:["ಪ್ರಭಾವಿತ ಪ್ರದೇಶಕ್ಕೆ ವಿಶ್ರಾಂತಿ ನೀಡಿ","ಶಾಖ ಥೆರಪಿ","ಹಗುರ ವ್ಯಾಯಾಮ"], medicines:["ಇಬುಪ್ರೋಫೆನ್ 400mg","ಪ್ಯಾರಾಸಿಟಮೋಲ್ 650mg"], serious:"ವೇದನೆ ತೀವ್ರವಾಗಿದ್ದರೆ ಅಥವಾ ಊತ ಕಾಣಿಸಿದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic body pain", medicines:["Regular exercise","Pain reliever as needed"] },
+          hi: { diagnosis:"क्रोनिक शरीर दर्द", medicines:["नियमित व्यायाम","आवश्यकतानुसार दर्द निवारक"] },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ದೇಹ ನೋವು", medicines:["ನಿಯಮಿತ ವ್ಯಾಯಾಮ","ಅಗತ್ಯವಿರುವಂತೆ ನೋವು ಪರಿಹಾರಕ"] }
+        }
+      },
+      "Breathing Difficulty": {
+        "1-3 days": {
+          en: { diagnosis:"Possible asthma or pneumonia", home:["Sit upright","Use inhaler if available","Avoid triggers"], medicines:["Salbutamol inhaler","Corticosteroids if prescribed"], serious:"If difficulty persists, go to hospital" },
+          hi: { diagnosis:"संभावित अस्थमा या निमोनिया", home:["सीधे बैठें","यदि उपलब्ध हो तो इनहेलर का उपयोग करें","ट्रिगर से बचें"], medicines:["सलबुटामोल इनहेलर","निर्धारित हो तो कॉर्टिकोस्टेरॉइड"], serious:"यदि कठिनाई जारी रहे तो अस्पताल जाएं" },
+          kn: { diagnosis:"ಸಂಭವನೀಯ ಆಸ್ಥಮಾ ಅಥವಾ ಫೇಫ್ಡಿನ ಸೋಂಕು", home:["ನೇರವಾಗಿ ಕುಳಿತುಕೊಳ್ಳಿ","ಲಭ್ಯವಿದ್ದರೆ ಇನ್‌ಹೇಲರ್ ಬಳಸಿ","ಟ್ರಿಗರ್ ತಪ್ಪಿಸಿ"], medicines:["ಸಲ್ಬುಟಮೋಲ್ ಇನ್‌ಹೇಲರ್","ನಿರ್ದೇಶಿಸಿದರೆ ಕಾರ್ಟಿಕೋಸ್ಟೆರಾಯ್ಡ್"], serious:"ಕಷ್ಟ ಮುಂದುವರಿದರೆ ಆಸ್ಪತ್ರೆಗೆ ಹೋಗಿ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic breathing issues", serious:"Consult pulmonologist" },
+          hi: { diagnosis:"क्रोनिक श्वसन समस्याएं", serious:"पल्मोनोलॉजिस्ट से परामर्श लें" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಶ್ವಾಸಕ್ರಿಯೆ ಸಮಸ್ಯೆಗಳು", serious:"ಫೇಫ್ಡೆ ರೋಗ ವಿಶೇಷಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ" }
+        }
+      },
+      "Vomiting": {
+        "1-3 days": {
+          en: { diagnosis:"Nausea or food poisoning", home:["Sip water slowly","Eat light meals","Ginger tea"], medicines:["Ondansetron 4mg when needed","Electrolyte solution"], serious:"If vomiting is persistent or blood is present" },
+          hi: { diagnosis:"मतली या खाद्य विषाक्तता", home:["धीरे-धीरे पानी पिएं","हल्का खाना खाएं","अदरक की चाय"], medicines:["आवश्यकतानुसार ओंडनसेट्रॉन 4mg","इलेक्ट्रोलाइट समाधान"], serious:"यदि उल्टी लगातार हो या खून आए" },
+          kn: { diagnosis:"ಅಸ್ವಸ್ತತೆ ಅಥವಾ ಆಹಾರ ವಿಷ", home:["ನಿಧಾನವಾಗಿ ನೀರು ಕುಡಿಯಿರಿ","ಹಗುರ ಆಹಾರ ತಿನ್ನಿರಿ","ಮೆಣಿನೆ ಚಾಯ"], medicines:["ಅಗತ್ಯ ಬಂದಾಗ ಓಂಡನಸೆಟ್ರಾನ್ 4mg","ವಿದ್ಯುದ್ವಿಭವ ದ್ರಾವಣ"], serious:"ಚೀಲುವಿಕೆ ನಿರಂತರವಾಗಿದ್ದರೆ ಅಥವಾ ರಕ್ತ ಇದ್ದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic vomiting", serious:"Hospital admission recommended" },
+          hi: { diagnosis:"क्रोनिक उल्टी", serious:"अस्पताल में भर्ती की सिफारिश की जाती है" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಚೀಲುವಿಕೆ", serious:"ಆಸ್ಪತ್ರೆಗೆ ದಾಖಲಿಸುವಿಕೆ ಸಿಫಾರಸು ಮಾಡಲಾಗಿದೆ" }
+        }
+      },
+      "Diarrhea": {
+        "1-3 days": {
+          en: { diagnosis:"Acute gastroenteritis", home:["Drink ORS","Eat bland food","Avoid dairy"], medicines:["Loperamide 2mg if needed","Probiotics"], serious:"If dehydration or blood in stool occurs" },
+          hi: { diagnosis:"तीव्र गैस्ट्रोएंटेराइटिस", home:["ORS पिएं","सादा खाना खाएं","डेयरी से बचें"], medicines:["आवश्यकतानुसार लोपेरामाइड 2mg","प्रोबायोटिक्स"], serious:"यदि निर्जलीकरण या मल में खून हो" },
+          kn: { diagnosis:"ತೀವ್ರ ಕರುಳಿನ ಉರ್ಜ್ಜನ", home:["ORS ಕುಡಿಯಿರಿ","ಸಾಮಾನ್ಯ ಆಹಾರ ತಿನ್ನಿರಿ","ಮೃಗಜನ್ಯ ಉತ್ಪನ್ನಗಳನ್ನು ತಪ್ಪಿಸಿ"], medicines:["ಅಗತ್ಯವಿದ್ದರೆ ಲೋಪೆರಾಮೈಡ್ 2mg","ಸುಕುಮಾರ ಕೀಟಾಣುಗಳ ಸಂಸ್ಕೃತಿ"], serious:"ನಿರ್ಜಲೀಕರಣ ಅಥವಾ ಮಲಿನ ರಕ್ತ ಕಾಣಿಸಿದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic diarrhea", serious:"Consult gastroenterologist" },
+          hi: { diagnosis:"क्रोनिक दस्त", serious:"गैस्ट्रोएंटेरोलॉजिस्ट से परामर्श लें" },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಹೊಟ್ಟೆಯ ಸಮಸ್ಯೆ", serious:"ಆಹಾರನಾಳ ರೋಗ ವಿಶೇಷಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ" }
+        }
+      },
+      "Sore Throat": {
+        "1-3 days": {
+          en: { diagnosis:"Pharyngitis or tonsillitis", home:["Gargle with salt water","Drink warm liquids","Avoid smoking"], medicines:["Throat lozenge","Cephalexin if bacterial"], serious:"If swallowing becomes difficult" },
+          hi: { diagnosis:"ग्रसनीशोथ या टॉन्सिलिटिस", home:["नमक के पानी से गरारे करें","गर्म तरल पदार्थ पिएं","धूम्रपान से बचें"], medicines:["गले की लोजेंज","बैक्टीरियल होने पर सेफलेक्सिन"], serious:"यदि निगलना कठिन हो जाए" },
+          kn: { diagnosis:"ಗಲ್ಲದ ವೈದ್ಯಕೀಯ ರೋಗ ಅಥವಾ ಟಾನ್ಸಿಲ್ ಉರ್ಜ್ಜನ", home:["ಉಪ್ಪಿನ ನೀರಿನಿಂದ ಗಾರ್ಗಲ್ ಮಾಡಿ","ಬೆಚ್ಚಗಿನ ದ್ರವ ಕುಡಿಯಿರಿ","ಪೂತಿಂಗಕ್ಕಿ ತಪ್ಪಿಸಿ"], medicines:["ಗಲ್ಲದ ಲೋಜೆಂಜ್","ಬ್ಯಾಕ್ಟೀರಿಯಾದಿಂದ ಬಂದರೆ ಸೆಫಲೆಕ್ಸಿನ್"], serious:"ನುಂಗುವಿಕೆ ಕಷ್ಟಕರವಾದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic sore throat", medicines:["Regular gargling","Vitamin C supplements"] },
+          hi: { diagnosis:"क्रोनिक गले में खराश", medicines:["नियमित गरारे","विटामिन सी सप्लीमेंट"] },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಗಲ್ಲದ ನೋವು", medicines:["ನಿಯಮಿತ ಗಾರ್ಗಲ್","ವಿಟಮಿನ್ C ಪೂರಕ"] }
+        }
+      },
+      "Joint Pain": {
+        "1-3 days": {
+          en: { diagnosis:"Arthralgia or inflammation", home:["Apply ice pack","Elevate joint","Avoid activity"], medicines:["Ibuprofen 400mg","Glucosamine supplements"], serious:"If joint is swollen or red" },
+          hi: { diagnosis:"संधि दर्द या सूजन", home:["बर्फ की पट्टी लगाएं","जोड़ को ऊंचा करें","गतिविधि से बचें"], medicines:["इबुप्रोफेन 400mg","ग्लूकोसामाइन सप्लीमेंट"], serious:"यदि जोड़ सूजा हुआ या लाल हो" },
+          kn: { diagnosis:"ಸಂಧಿಯ ನೋವು ಅಥವಾ ವೈದ್ಯಕೀಯ ರೋಗ", home:["ಐಸ್ ಪ್ಯಾಕ್ ಸೇಕು ಸೂತ್ರ ನಿರ್ದಿಷ್ಠವನ್ನು ಅನ್ವಯಿಸಿ","ಸಂಧಿಯನ್ನು ಎತ್ತರಕ್ಕೆ ಹೋಗಿ","ಚಟುವಟಿಕೆ ತಪ್ಪಿಸಿ"], medicines:["ಇಬುಪ್ರೋಫೆನ್ 400mg","ಗ್ಲೂಕೋಸಾಮೀನ್ ಪೂರಕ"], serious:"ಸಂಧಿ ಊತವಾಗಿದ್ದರೆ ಅಥವಾ ಕೆಂಪಾಗಿದ್ದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic arthritis", medicines:["Regular exercise","Joint care"] },
+          hi: { diagnosis:"क्रोनिक गठिया", medicines:["नियमित व्यायाम","जोड़ों की देखभाल"] },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಸಂಧಿರೋಗ", medicines:["ನಿಯಮಿತ ವ್ಯಾಯಾಮ","ಸಂಧಿ ರಕ್ಷಣೆ"] }
+        }
+      },
+      "Fatigue": {
+        "1-3 days": {
+          en: { diagnosis:"Tiredness or low energy", home:["Get adequate sleep","Healthy diet","Light exercise"], medicines:["Vitamin B complex","Iron supplement if anemic"], serious:"If fatigue is extreme or persistent" },
+          hi: { diagnosis:"थकान या कम ऊर्जा", home:["पर्याप्त नींद लें","स्वस्थ आहार","हल्का व्यायाम"], medicines:["विटामिन बी कॉम्प्लेक्स","एनीमिक होने पर आयरन सप्लीमेंट"], serious:"यदि थकान चरम या लगातार हो" },
+          kn: { diagnosis:"ಆಯಾಸ ಅಥವಾ ಕಡಿಮೆ ಶಕ್ತಿ", home:["ಸಾಕಷ್ಟು ನಿದ್ರೆ ಪಡೆಯಿರಿ","ಆರೋಗ್ಯಕರ ಆಹಾರ","ಹಗುರ ವ್ಯಾಯಾಮ"], medicines:["ವಿಟಮಿನ್ B ಸಂಕೀರ್ಣ","ರಕ್ತದೊರೆತೆ ಇದ್ದರೆ ಲೋಹ ಪೂರಕ"], serious:"ಆಯಾಸ ತೀವ್ರವಾಗಿದ್ದರೆ ಅಥವಾ ನಿರಂತರವಾಗಿದ್ದರೆ" }
+        },
+        "any": {
+          en: { diagnosis:"Chronic fatigue", medicines:["Balanced diet","Regular exercise"] },
+          hi: { diagnosis:"क्रोनिक थकान", medicines:["संतुलित आहार","नियमित व्यायाम"] },
+          kn: { diagnosis:"ದೀರ್ಘಕಾಲದ ಆಯಾಸ", medicines:["ಸಮತೋಲಿತ ಆಹಾರ","ನಿಯಮಿತ ವ್ಯಾಯಾಮ"] }
+        }
+      }
+    };
+
+    /* ===========================
+       UI helpers
+       =========================== */
+    function addMessage(textContent, type='bot', warning=false){
+      const el = document.createElement('div');
+      el.className = `message ${type} ${warning ? 'warning' : ''}`;
+      el.textContent = textContent;
+      chatBox.appendChild(el);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      if(type==='bot'){
+        lastBotText = textContent;
+      }
+    }
+
+    function showQuick(list){
+      quickReplies.innerHTML = '';
+      (list||[]).forEach(item=>{
+        const btn = document.createElement('button');
+        btn.className = 'qr-btn';
+        btn.textContent = item;
+        btn.onclick = ()=> handleInput(item);
+        quickReplies.appendChild(btn);
+      });
+    }
+
+    /* ===========================
+       Input / Flow logic
+       =========================== */
+    function handleInput(raw){
+      if(!raw) return;
+      const input = raw.trim();
+      addMessage(input, 'user');
+
+      if(state.stage === 'language'){
+        if(input.includes('English')) state.lang = 'en';
+        else if(input.includes('हिंदी')) state.lang = 'hi';
+        else if(input.includes('ಕನ್ನಡ')) state.lang = 'kn';
+        else { addMessage("Please select: English / हिंदी / ಕನ್ನಡ"); return; }
+
+        state.stage = 'main';
+        addMessage(text[state.lang].welcome);
+        showQuick(text[state.lang].mainMenu);
+        return;
+      }
+
+      if(state.stage === 'main'){
+        if(input.includes("Check") || input.includes("लक्षण") || input.includes("ಲಕ್ಷಣ")){
+          state.stage = 'symptom';
+          addMessage(text[state.lang].selectSymptom);
+          showQuick(symptomsByLang[state.lang]);
+          return;
+        }
+
+        if(input.includes("Appointment") || input.includes("अपॉइंटमेंट") || input.includes("ಅಪಾಯಿಂಟ್")){
+          addMessage(text[state.lang].appointment);
+          showQuick(text[state.lang].mainMenu);
+          return;
+        }
+
+        if(input.includes("Emergency") || input.includes("आपातकालीन") || input.includes("ತುರ್ತು")){
+          addMessage(text[state.lang].emergency, 'bot', true);
+          showQuick(text[state.lang].mainMenu);
+          return;
+        }
+
+        addMessage("Please choose from the menu.");
+        showQuick(text[state.lang].mainMenu);
+        return;
+      }
+
+      if(state.stage === 'symptom'){
+        state.symptom = symptomToKey[state.lang][input];
+        if(!state.symptom){
+          addMessage(text[state.lang].symptomError);
+          showQuick(symptomsByLang[state.lang]);
+          return;
+        }
+        state.stage = 'duration';
+        addMessage(text[state.lang].selectDuration);
+        showQuick(text[state.lang].durations);
+        return;
+      }
+
+      if(state.stage === 'duration'){
+        // Map duration input to key
+        let durationKey = "any";
+        if(input.includes("1-3") || input.includes("दिन") && input.includes("1-3") || input.includes("ದಿನ") && input.includes("1-3")){
+          durationKey = "1-3 days";
+        } else if(input.includes("3-7") || input.includes("दिन") && input.includes("3-7") || input.includes("ದಿನ") && input.includes("3-7")){
+          durationKey = "3-7 days";
+        } else if(input.includes("1-2") && (input.includes("week") || input.includes("सप्ताह") || input.includes("ವಾರ"))){
+          durationKey = "1-2 weeks";
+        } else if(input.includes("More") || input.includes("अधिक") || input.includes("ಹೆಚ್ಚು")){
+          durationKey = "any";
+        }
+
+        // Get the record for this symptom and duration
+        let rec = database[state.symptom][durationKey] || database[state.symptom]["any"];
+        let langRec = rec[state.lang] || rec.en;
+        
+        let response = text[state.lang].diagnosis + langRec.diagnosis;
+        
+        if(langRec.home && langRec.home.length > 0){
+          response += "\n\n" + text[state.lang].homeRemedies + "\n• " + langRec.home.join("\n• ");
+        }
+        
+        if(langRec.medicines && langRec.medicines.length > 0){
+          response += "\n\n" + text[state.lang].medicines + "\n• " + langRec.medicines.join("\n• ");
+        }
+        
+        if(langRec.serious){
+          response += "\n\n⚠️ " + langRec.serious;
+        }
+        
+        response += "\n\n" + text[state.lang].thankYou;
+        
+        addMessage(response);
+        
+        // Reset to main menu
+        state.stage = 'main';
+        state.symptom = null;
+        state.duration = null;
+        setTimeout(()=>{
+          addMessage(text[state.lang].helpMore);
+          showQuick(text[state.lang].mainMenu);
+        }, 1500);
+        return;
+      }
+    }
+
+    /* ===========================
+       Voice + TTS
+       =========================== */
+    let recognition;
+    function setupRecognition(){
+      if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+        const R = window.webkitSpeechRecognition || window.SpeechRecognition;
+        recognition = new R();
+        recognition.interimResults = false;
+        recognition.continuous = false;
+        recognition.lang = state.lang === 'hi' ? 'hi-IN' : state.lang === 'kn' ? 'kn-IN' : 'en-US';
+        recognition.onresult = e => {
+          if(e.results && e.results[0]){
+            handleInput(e.results[0][0].transcript);
+          }
+        };
+        recognition.onerror = e => {
+          console.error('Speech recognition error:', e.error);
+          addMessage("Voice input not recognized. Please try again or type your message.");
+        };
+      }
+    }
+
+    voiceBtn.onclick = ()=> {
+      if(recognition){
+        recognition.lang = state.lang === 'hi' ? 'hi-IN' : state.lang === 'kn' ? 'kn-IN' : 'en-US';
+        recognition.start();
+      } else {
+        addMessage("Voice input not supported on this browser. Please type your message.");
+      }
+    };
+
+    readBtn.onclick = ()=>{
+      if(!lastBotText) return;
+      const u = new SpeechSynthesisUtterance(lastBotText);
+      u.lang = state.lang === 'hi' ? 'hi-IN' : state.lang === 'kn' ? 'kn-IN' : 'en-US';
+      speechSynthesis.speak(u);
+    };
+
+    sendBtn.onclick = ()=>{
+      handleInput(userInput.value);
+      userInput.value = '';
+    };
+
+    userInput.addEventListener('keypress', e=>{
+      if(e.key === 'Enter'){
+        handleInput(userInput.value);
+        userInput.value = '';
+      }
+    });
+
+    /* ===========================
+       Start
+       =========================== */
+    function start(){
+      setupRecognition();
+
+      const welcomeMsg = text.en.selectLang + "\n" + text.hi.selectLang + "\n" + text.kn.selectLang;
+
+      addMessage(welcomeMsg);
+      showQuick(["English","हिंदी","ಕನ್ನಡ"]);
+    }
+
+    start();
+  </script>
+</body>
+</html>
